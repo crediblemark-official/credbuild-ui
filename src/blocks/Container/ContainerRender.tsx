@@ -2,7 +2,7 @@
 
 import React, { useId } from "react";
 import { DropZone } from "@crediblemark/build";
-import { getVal, getTabletVal, getMobileVal } from "../utils";
+import { getVal, getTabletVal, getMobileVal } from "../../utils";
 import type { ContainerProps } from "./types";
 
 export const ContainerRender = ({

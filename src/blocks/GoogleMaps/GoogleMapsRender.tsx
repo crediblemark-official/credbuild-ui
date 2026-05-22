@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useId } from "react";
-import { getVal, getTabletVal, getMobileVal } from "../utils";
+import { getVal, getTabletVal, getMobileVal } from "../../utils";
 import { GoogleMapsProps } from "./types";
 
 export const GoogleMapsRender = ({ content, styling }: GoogleMapsProps) => {

@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useId } from "react";
-import { getVal, getMobileVal, getTabletVal } from "../utils";
+import { getVal, getMobileVal, getTabletVal } from "../../utils";
 import type { HeadingBlockProps } from "./types";
 
 export const HeadingBlockRender = (props: HeadingBlockProps | any) => {

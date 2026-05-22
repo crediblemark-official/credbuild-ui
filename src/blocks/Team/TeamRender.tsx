@@ -2,7 +2,7 @@
 
 import React, { useId } from "react";
 import Image from "next/image";
-import { getVal, getMobileVal } from "../utils";
+import { getVal, getMobileVal } from "../../utils";
 import { TeamProps } from "./types";
 
 export const TeamRender = ({ content, typography, styling }: TeamProps) => {

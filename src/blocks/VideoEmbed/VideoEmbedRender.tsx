@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useId } from "react";
-import { getVal, getTabletVal, getMobileVal } from "../utils";
+import { getVal, getTabletVal, getMobileVal } from "../../utils";
 import { VideoEmbedProps } from "./types";
 
 export const VideoEmbedRender = ({ content, styling }: VideoEmbedProps) => {

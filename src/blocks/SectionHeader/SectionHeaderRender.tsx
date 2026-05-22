@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useId } from "react";
-import { getVal, getMobileVal } from "../utils";
+import { getVal, getMobileVal } from "../../utils";
 import type { SectionHeaderProps } from "./types";
 
 export const SectionHeaderRender = ({ content, styling, typography }: SectionHeaderProps) => {

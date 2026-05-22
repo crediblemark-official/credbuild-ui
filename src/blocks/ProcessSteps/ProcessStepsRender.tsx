@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useId } from "react";
-import { getVal, getMobileVal } from "../utils";
+import { getVal, getMobileVal } from "../../utils";
 import { ProcessStepsProps } from "./types";
 
 export const ProcessStepsRender = ({ content, typography, styling }: ProcessStepsProps) => {

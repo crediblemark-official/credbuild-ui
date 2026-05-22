@@ -4,7 +4,7 @@ import dynamic from "next/dynamic";
 import React from "react";
 import type { ComponentConfig } from "@crediblemark/build";
 import { ColorPickerField, ResponsiveSliderField } from "@crediblemark/build";
-import { MediaPickerField } from "../MediaPickerField";
+import { MediaPickerField } from "../../MediaPickerField";
 
 import { TeamProps } from "./types";
 

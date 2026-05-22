@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useId } from "react";
-import { getVal, getMobileVal } from "../utils";
+import { getVal, getMobileVal } from "../../utils";
 import type { ComparisonTableProps } from "./types";
 
 export const ComparisonTableRender = ({ content, styling }: ComparisonTableProps) => {

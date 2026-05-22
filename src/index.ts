@@ -1,130 +1,130 @@
 export * from "./preset";
 
-export { HeadingBlock } from "./HeadingBlock/HeadingBlock";
-export type { HeadingBlockProps } from "./HeadingBlock/HeadingBlock";
+export { HeadingBlock } from "./blocks/HeadingBlock/HeadingBlock";
+export type { HeadingBlockProps } from "./blocks/HeadingBlock/HeadingBlock";
 
-export { HeroPublisher } from "./Hero/Publisher/Publisher";
-export type { HeroPublisherProps } from "./Hero/Publisher/Publisher";
+export { HeroPublisher } from "./blocks/Hero/Publisher/Publisher";
+export type { HeroPublisherProps } from "./blocks/Hero/Publisher/Publisher";
 
-export { HeroPublisherTwo } from "./Hero/PublisherTwo/PublisherTwo";
-export type { HeroPublisherTwoProps } from "./Hero/PublisherTwo/PublisherTwo";
+export { HeroPublisherTwo } from "./blocks/Hero/PublisherTwo/PublisherTwo";
+export type { HeroPublisherTwoProps } from "./blocks/Hero/PublisherTwo/PublisherTwo";
 
-export { HeroFitness } from "./Hero/Fitness/Fitness";
-export type { HeroFitnessProps } from "./Hero/Fitness/Fitness";
+export { HeroFitness } from "./blocks/Hero/Fitness/Fitness";
+export type { HeroFitnessProps } from "./blocks/Hero/Fitness/Fitness";
 
-export { HeroDental } from "./Hero/Dental/Dental";
-export type { HeroDentalProps } from "./Hero/Dental/Dental";
+export { HeroDental } from "./blocks/Hero/Dental/Dental";
+export type { HeroDentalProps } from "./blocks/Hero/Dental/Dental";
 
-export { HeroWedding } from "./Hero/Wedding/Wedding";
-export type { HeroWeddingProps } from "./Hero/Wedding/Wedding";
+export { HeroWedding } from "./blocks/Hero/Wedding/Wedding";
+export type { HeroWeddingProps } from "./blocks/Hero/Wedding/Wedding";
 
-export { HeroAgency } from "./Hero/Agency/Agency";
-export type { HeroAgencyProps } from "./Hero/Agency/Agency";
+export { HeroAgency } from "./blocks/Hero/Agency/Agency";
+export type { HeroAgencyProps } from "./blocks/Hero/Agency/Agency";
 
-export { HeroYoga } from "./Hero/Yoga/Yoga";
-export type { HeroYogaProps } from "./Hero/Yoga/Yoga";
+export { HeroYoga } from "./blocks/Hero/Yoga/Yoga";
+export type { HeroYogaProps } from "./blocks/Hero/Yoga/Yoga";
 
-export { HeroAutoService } from "./Hero/AutoService/AutoService";
-export type { HeroAutoServiceProps } from "./Hero/AutoService/AutoService";
+export { HeroAutoService } from "./blocks/Hero/AutoService/AutoService";
+export type { HeroAutoServiceProps } from "./blocks/Hero/AutoService/AutoService";
 
-export { HeroSecurity } from "./Hero/Security/Security";
-export type { HeroSecurityProps } from "./Hero/Security/Security";
+export { HeroSecurity } from "./blocks/Hero/Security/Security";
+export type { HeroSecurityProps } from "./blocks/Hero/Security/Security";
 
-export { HeroMedical } from "./Hero/Medical/Medical";
-export type { HeroMedicalProps } from "./Hero/Medical/Medical";
+export { HeroMedical } from "./blocks/Hero/Medical/Medical";
+export type { HeroMedicalProps } from "./blocks/Hero/Medical/Medical";
 
-export { HeroRealEstate } from "./Hero/RealEstate/RealEstate";
-export type { HeroRealEstateProps } from "./Hero/RealEstate/RealEstate";
+export { HeroRealEstate } from "./blocks/Hero/RealEstate/RealEstate";
+export type { HeroRealEstateProps } from "./blocks/Hero/RealEstate/RealEstate";
 
-export { Stats } from "./Stats/Stats";
-export type { StatsProps } from "./Stats/types";
+export { Stats } from "./blocks/Stats/Stats";
+export type { StatsProps } from "./blocks/Stats/types";
 
-export { IconGrid } from "./IconGrid/IconGrid";
-export type { IconGridProps } from "./IconGrid/types";
+export { IconGrid } from "./blocks/IconGrid/IconGrid";
+export type { IconGridProps } from "./blocks/IconGrid/types";
 
-export { Gallery } from "./Gallery/Gallery";
-export type { GalleryProps } from "./Gallery/Gallery";
+export { Gallery } from "./blocks/Gallery/Gallery";
+export type { GalleryProps } from "./blocks/Gallery/Gallery";
 
-export { Accordion } from "./Accordion/Accordion";
-export type { AccordionProps } from "./Accordion/Accordion";
+export { Accordion } from "./blocks/Accordion/Accordion";
+export type { AccordionProps } from "./blocks/Accordion/Accordion";
 
-export { Testimonials } from "./Testimonials/Testimonials";
-export type { TestimonialsProps } from "./Testimonials/types";
+export { Testimonials } from "./blocks/Testimonials/Testimonials";
+export type { TestimonialsProps } from "./blocks/Testimonials/types";
 
-export { CTA } from "./CTA/CTA";
-export type { CTAProps } from "./CTA/types";
+export { CTA } from "./blocks/CTA/CTA";
+export type { CTAProps } from "./blocks/CTA/types";
 
-export { FlexBlock } from "./FlexBlock/FlexBlock";
-export type { FlexBlockProps } from "./FlexBlock/FlexBlock";
+export { FlexBlock } from "./blocks/FlexBlock/FlexBlock";
+export type { FlexBlockProps } from "./blocks/FlexBlock/FlexBlock";
 
-export { Container } from "./Container/Container";
-export type { ContainerProps } from "./Container/Container";
+export { Container } from "./blocks/Container/Container";
+export type { ContainerProps } from "./blocks/Container/Container";
 
-export { PricingSimple as Pricing } from "./Pricing/Simple/Simple";
-export type { PricingSimpleProps as PricingProps } from "./Pricing/Simple/Simple";
+export { PricingSimple as Pricing } from "./blocks/Pricing/Simple/Simple";
+export type { PricingSimpleProps as PricingProps } from "./blocks/Pricing/Simple/Simple";
 
-export { PricingModern } from "./Pricing/Modern/Modern";
-export type { PricingModernProps } from "./Pricing/Modern/Modern";
+export { PricingModern } from "./blocks/Pricing/Modern/Modern";
+export type { PricingModernProps } from "./blocks/Pricing/Modern/Modern";
 
-export { PricingBox } from "./Pricing/Box/Box";
-export type { PricingBoxProps } from "./Pricing/Box/Box";
+export { PricingBox } from "./blocks/Pricing/Box/Box";
+export type { PricingBoxProps } from "./blocks/Pricing/Box/Box";
 
-export { PricingGradient } from "./Pricing/Gradient/Gradient";
-export type { PricingGradientProps } from "./Pricing/Gradient/Gradient";
+export { PricingGradient } from "./blocks/Pricing/Gradient/Gradient";
+export type { PricingGradientProps } from "./blocks/Pricing/Gradient/Gradient";
 
-export { PricingImage } from "./Pricing/Image/Image";
-export type { PricingImageProps } from "./Pricing/Image/Image";
+export { PricingImage } from "./blocks/Pricing/Image/Image";
+export type { PricingImageProps } from "./blocks/Pricing/Image/Image";
 
-export { BlogList } from "./BlogList/BlogList";
-export type { BlogListProps } from "./BlogList/BlogList";
+export { BlogList } from "./blocks/BlogList/BlogList";
+export type { BlogListProps } from "./blocks/BlogList/BlogList";
 
-export { AboutCompany } from "./AboutCompany/AboutCompany";
-export type { AboutCompanyProps } from "./AboutCompany/types";
+export { AboutCompany } from "./blocks/AboutCompany/AboutCompany";
+export type { AboutCompanyProps } from "./blocks/AboutCompany/types";
 
-export { ProductList } from "./ProductList/ProductList";
-export type { ProductListProps } from "./ProductList/ProductList";
+export { ProductList } from "./blocks/ProductList/ProductList";
+export type { ProductListProps } from "./blocks/ProductList/ProductList";
 
-export { LogoMarquee } from "./LogoMarquee/LogoMarquee";
-export type { LogoMarqueeProps } from "./LogoMarquee/types";
+export { LogoMarquee } from "./blocks/LogoMarquee/LogoMarquee";
+export type { LogoMarqueeProps } from "./blocks/LogoMarquee/types";
 
-export { ContactForm } from "./ContactForm/ContactForm";
-export type { ContactFormProps } from "./ContactForm/types";
+export { ContactForm } from "./blocks/ContactForm/ContactForm";
+export type { ContactFormProps } from "./blocks/ContactForm/types";
 
-export { Portfolio } from "./Portfolio/Portfolio";
-export type { PortfolioProps } from "./Portfolio/types";
+export { Portfolio } from "./blocks/Portfolio/Portfolio";
+export type { PortfolioProps } from "./blocks/Portfolio/types";
 
-export { RichText } from "./RichText/RichText";
-export type { RichTextProps } from "./RichText/RichText";
+export { RichText } from "./blocks/RichText/RichText";
+export type { RichTextProps } from "./blocks/RichText/RichText";
 
-export { VideoEmbed } from "./VideoEmbed/VideoEmbed";
-export type { VideoEmbedProps } from "./VideoEmbed/types";
+export { VideoEmbed } from "./blocks/VideoEmbed/VideoEmbed";
+export type { VideoEmbedProps } from "./blocks/VideoEmbed/types";
 
-export { ProcessSteps } from "./ProcessSteps/ProcessSteps";
-export type { ProcessStepsProps } from "./ProcessSteps/types";
+export { ProcessSteps } from "./blocks/ProcessSteps/ProcessSteps";
+export type { ProcessStepsProps } from "./blocks/ProcessSteps/types";
 
-export { GoogleMaps } from "./GoogleMaps/GoogleMaps";
-export type { GoogleMapsProps } from "./GoogleMaps/types";
+export { GoogleMaps } from "./blocks/GoogleMaps/GoogleMaps";
+export type { GoogleMapsProps } from "./blocks/GoogleMaps/types";
 
-export { Team } from "./Team/Team";
-export type { TeamProps } from "./Team/types";
+export { Team } from "./blocks/Team/Team";
+export type { TeamProps } from "./blocks/Team/types";
 
-export { OpeningHours } from "./OpeningHours/OpeningHours";
-export type { OpeningHoursProps } from "./OpeningHours/types";
+export { OpeningHours } from "./blocks/OpeningHours/OpeningHours";
+export type { OpeningHoursProps } from "./blocks/OpeningHours/types";
 
-export { ComparisonTable } from "./ComparisonTable/ComparisonTable";
-export type { ComparisonTableProps } from "./ComparisonTable/ComparisonTable";
+export { ComparisonTable } from "./blocks/ComparisonTable/ComparisonTable";
+export type { ComparisonTableProps } from "./blocks/ComparisonTable/ComparisonTable";
 
-export { CustomEmbed } from "./CustomEmbed/CustomEmbed";
-export type { CustomEmbedProps } from "./CustomEmbed/types";
+export { CustomEmbed } from "./blocks/CustomEmbed/CustomEmbed";
+export type { CustomEmbedProps } from "./blocks/CustomEmbed/types";
 
-export { SectionHeader } from "./SectionHeader/SectionHeader";
-export type { SectionHeaderProps } from "./SectionHeader/SectionHeader";
+export { SectionHeader } from "./blocks/SectionHeader/SectionHeader";
+export type { SectionHeaderProps } from "./blocks/SectionHeader/SectionHeader";
 
-export { FeatureItem } from "./FeatureItem/FeatureItem";
-export type { FeatureItemProps } from "./FeatureItem/FeatureItem";
+export { FeatureItem } from "./blocks/FeatureItem/FeatureItem";
+export type { FeatureItemProps } from "./blocks/FeatureItem/FeatureItem";
 
-export { InfoGrid } from "./InfoGrid/InfoGrid";
-export type { InfoGridProps } from "./InfoGrid/InfoGrid";
+export { InfoGrid } from "./blocks/InfoGrid/InfoGrid";
+export type { InfoGridProps } from "./blocks/InfoGrid/InfoGrid";
 
-export { SocialFeed } from "./SocialFeed/SocialFeed";
-export type { SocialFeedProps } from "./SocialFeed/types";
+export { SocialFeed } from "./blocks/SocialFeed/SocialFeed";
+export type { SocialFeedProps } from "./blocks/SocialFeed/types";

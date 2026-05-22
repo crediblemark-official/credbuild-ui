@@ -2,7 +2,7 @@ import React, { useEffect, useState, useId } from "react";
 import { useHasMounted } from "@/hooks/use-has-mounted";
 import { BlogCard } from "./BlogCard";
 import type { BlogListProps, Post } from "./types";
-import { getVal, getTabletVal, getMobileVal } from "../utils";
+import { getVal, getTabletVal, getMobileVal } from "../../utils";
 
 export const BlogListRender = ({
     content,

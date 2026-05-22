@@ -2,9 +2,9 @@
 
 import * as React from "react";
 import { useId } from "react";
-import DynamicIcon from "../DynamicIcon";
+import DynamicIcon from "../../DynamicIcon";
 import { ArrowRight } from "lucide-react";
-import { getVal, getTabletVal, getMobileVal } from "../utils";
+import { getVal, getTabletVal, getMobileVal } from "../../utils";
 import type { FeatureItemProps } from "./types";
 
 export const FeatureItemRender = ({ content, styling }: FeatureItemProps) => {
