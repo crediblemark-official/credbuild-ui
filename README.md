@@ -54,6 +54,30 @@ export default config;
 
 ---
 
+## 🧩 Mixing Package Blocks & Custom Local Blocks
+
+When you install `@crediblemark/build-ui`, all the 45+ companion blocks are installed inside your project's `node_modules`. This keeps your project's codebase completely clean and allows you to update the companion library effortlessly with a single command (`npm update @crediblemark/build-ui`) whenever new features or bug fixes are released.
+
+If you want to create your own local custom blocks (e.g., in `components/credbuild/`) and mix them with the companion blocks, you can easily combine them inside `credbuild.config.tsx`:
+
+```tsx
+import { buildUiPreset } from "@crediblemark/build-ui";
+import MyLocalCustomHero from "@/components/credbuild/MyLocalCustomHero";
+
+// Combine companion package blocks with your local custom blocks
+const config = {
+  ...buildUiPreset,
+  components: {
+    ...buildUiPreset.components,       // Expose all 45+ package blocks
+    "my-local-hero": MyLocalCustomHero // Expose your custom local block
+  }
+};
+
+export default config;
+```
+
+---
+
 ## 🎨 Block Library Highlights
 
 `@crediblemark/build-ui` brings highly stylized, beautifully structured vanilla CSS responsive blocks to your visual builder:
