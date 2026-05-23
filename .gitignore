@@ -4,4 +4,9 @@ dist
 .turbo
 *.log
 .DS_Store
-node_modules
+
+# ENV and secrets
+.env
+.env.local
+.env.*
+.npmrc
