@@ -209,7 +209,7 @@ export const HeroWeddingRender = ({
                             <div className="client-avatars">
                                 {[1, 2, 3, 4].map((i) => (
                                     <div key={i} className="client-avatar">
-                                        <Image src={`https://i.pravatar.cc/100?img=${i + 10}`} alt={`Client ${i}`} fill className="object-cover rounded-full"  />
+                                        <Image src={`https://i.pravatar.cc/100?img=${i + 10}`} alt={`Client ${i}`} sizes="100vw" fill className="object-cover rounded-full"  />
                                     </div>
                                 ))}
                                 <div className="client-avatar" style={{ backgroundColor: accentColor, color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '10px', fontWeight: 'bold' }}>2k+</div>

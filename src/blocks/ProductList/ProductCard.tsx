@@ -77,7 +77,12 @@ export const ProductCard = ({
             }}
         >
             {/* Image Section */}
-            <div className={`${aspectClass} relative overflow-hidden bg-zinc-50 dark:bg-zinc-900 flex-shrink-0`}>
+            <div 
+                className={`${aspectClass} relative overflow-hidden bg-zinc-50 dark:bg-zinc-900 flex-shrink-0 w-full`}
+                style={{ 
+                    aspectRatio: aspectClass.includes('[') ? aspectClass.replace('aspect-[', '').replace(']', '') : undefined 
+                }}
+            >
                 {product.images && product.images[0] ? (
                     <Image
                         src={product.images[0]}

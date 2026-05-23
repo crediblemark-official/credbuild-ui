@@ -163,7 +163,7 @@ export const MediaPickerField = ({ value, onChange, label, variant = "default", 
                             <Image 
                                 src={getProxiedUrl(value)} 
                                 alt="Preview" 
-                                fill 
+                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" fill 
                                 className={`transition-transform duration-300 group-hover:scale-105 ${variant === "logo" ? "object-contain p-2" : "object-cover"}`}
                             />
                         ) : (
@@ -218,7 +218,7 @@ export const MediaPickerField = ({ value, onChange, label, variant = "default", 
                             <Image 
                                 src={getProxiedUrl(value)} 
                                 alt="Preview" 
-                                fill 
+                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" fill 
                                 className="object-cover group-hover:scale-105 transition-transform"
                             />
                             <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
@@ -309,7 +309,7 @@ export const MediaPickerField = ({ value, onChange, label, variant = "default", 
                                                 <Image 
                                                     src={getProxiedUrl(item.url)} 
                                                     alt={item.filename} 
-                                                    fill 
+                                                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" fill 
                                                     className="object-cover"
                                                 />
                                                 <div className={`absolute inset-0 bg-primary/10 transition-opacity ${value === item.url ? "opacity-100" : "opacity-0 group-hover:opacity-40"}`} />

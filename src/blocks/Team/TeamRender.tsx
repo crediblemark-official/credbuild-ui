@@ -116,7 +116,7 @@ export const TeamRender = ({ content, typography, styling }: TeamProps) => {
                         <div key={index} className="member-card">
                             <div className="member-image">
                                 {member.image ? (
-                                    <Image src={member.image} alt={member.name} fill className="object-cover"  />
+                                    <Image src={member.image} alt={member.name} sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" fill className="object-cover"  />
                                 ) : (
                                     <div style={{ display: "flex", alignItems: "center", justifyContent: "center", height: "100%", fontSize: "2rem" }}>👤</div>
                                 )}

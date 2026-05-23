@@ -26,8 +26,9 @@
       "@/lib/media/utils": ["./src/lib/media-utils.ts"],
       "@/components/ui/Portal": ["./src/components/Portal.tsx"],
       "@/*": ["./src/*"]
-    }
+    },
+    "types": ["bun"]
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "setupTests.ts", "tests/**/*"],
   "exclude": ["dist", "node_modules"]
 }
