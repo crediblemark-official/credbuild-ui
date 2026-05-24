@@ -120,17 +120,17 @@ export const HeroRealEstate: ComponentConfig<HeroRealEstateProps> = {
     },
     defaultProps: {
         content: {
-            title: "Start Your Journey To Home",
-            description: "Guiding you through the process of finding your home, we understand that this journey is more than just a transaction.",
+            title: "Lorem Ipsum Dolor Sit Amet",
+            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
             searchPlaceholder: "Location",
             searchButtonText: "Search",
-            avatarCount: "1,618 Satisfied Buyers",
+            avatarCount: "1,618 Satisfied Users",
             stat1Value: "15k+",
-            stat1Label: "Happy Customer",
+            stat1Label: "Happy Customers",
             stat2Value: "1200+",
-            stat2Label: "Listed Properties",
+            stat2Label: "Listed Items",
             stat3Value: "2000+",
-            stat3Label: "Expert Agents",
+            stat3Label: "Active Members",
         },
         media: {
             imageUrl: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&q=80&w=800",

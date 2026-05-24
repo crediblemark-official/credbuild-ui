@@ -147,8 +147,8 @@ export const HeroFitness: ComponentConfig<HeroFitnessProps> = {
     },
     defaultProps: {
         content: {
-            title: "SHAPE YOUR IDEAL BODY",
-            subtitle: "Take the first step towards a healthier, stronger you with our premium fitness programs.",
+            title: "LOREM IPSUM DOLOR SIT",
+            subtitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
             ctaText: "Get Started Now",
         },
         media: {

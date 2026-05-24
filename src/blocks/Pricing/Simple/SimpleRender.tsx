@@ -75,7 +75,7 @@ export const SimplePricingRender = ({
                     marginBottom: 'clamp(2.5rem, 5vw, 4rem)',
                     fontSize: 'clamp(1rem, 2vw, 1.1rem)',
                 }}>
-                    Pilih paket yang sesuai dengan kebutuhan Anda
+                    Pilih paket sesuai kebutuhan
                 </p>
 
                 {isHorizontal ? (

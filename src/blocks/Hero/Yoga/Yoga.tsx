@@ -129,9 +129,9 @@ export const HeroYoga: ComponentConfig<HeroYogaProps> = {
     },
     defaultProps: {
         content: {
-            tag: "Yoga Classes",
-            title: "Yoga Classes: Unwind, Improve And Transform",
-            subtitle: "Find your inner peace and strength through our expert-led yoga sessions",
+            tag: "Lorem Ipsum",
+            title: "Lorem Ipsum Dolor: Unwind And Transform",
+            subtitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor.",
             ctaText: "Register Now",
             ctaLink: "#",
             secondaryButtonText: "Class Preview",

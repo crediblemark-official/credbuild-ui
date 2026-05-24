@@ -122,11 +122,11 @@ export const HeroAutoService: ComponentConfig<HeroAutoServiceProps> = {
     },
     defaultProps: {
         content: {
-            title: "Your Reliable Option For Auto ",
-            highlightText: "Repairs And Services",
+            title: "Lorem Ipsum Dolor Sit ",
+            highlightText: "Amet Consectetur",
             bulletPoints: [
-                { text: "Our team of skilled technicians boasts decades of collective experience, ensuring satisfaction" },
-                { text: "We believe in honest communication with our customers. You'll receive clear explanations of every problems" },
+                { text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit." },
+                { text: "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." },
             ],
             ctaText: "Contact Us",
             ctaLink: "#",

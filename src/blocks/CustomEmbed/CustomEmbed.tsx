@@ -49,7 +49,7 @@ export const CustomEmbed: ComponentConfig<CustomEmbedProps> = {
     },
     defaultProps: {
         content: {
-            html: '<div style="padding: 20px; background: #eee; border: 2px dashed #ccc; text-align: center; border-radius: 8px;"><strong>Custom Embed Placeholder</strong><br/>Tempelkan kode iframe atau HTML Anda di sini.</div>',
+            html: '<div style="padding: 20px; background: #eee; border: 2px dashed #ccc; text-align: center; border-radius: 8px;"><strong>Custom Embed</strong><br/>Tempelkan kode HTML/iframe di sini.</div>',
         },
         styling: {
             backgroundColor: "transparent",

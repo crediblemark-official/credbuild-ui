@@ -143,8 +143,8 @@ export const HeroAgency: ComponentConfig<HeroAgencyProps> = {
     },
     defaultProps: {
         content: {
-            title: "Weaving Pixels\nIn Brands",
-            subtitle: "We Don't Just Design Websites Or Create Logos; We Meticulously Weave Pixels Into The Very Fabric Of Brands",
+            title: "Lorem Ipsum\nDolor Sit",
+            subtitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
             ctaText: "Get In Touch",
             ctaLink: "#contact",
         },

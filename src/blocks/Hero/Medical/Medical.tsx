@@ -129,14 +129,14 @@ export const HeroMedical: ComponentConfig<HeroMedicalProps> = {
     },
     defaultProps: {
         content: {
-            title: "Get Virtual Consultations For A Healthier You",
-            description: "Discover the convenience of expert medical guidance from the comfort of your surroundings. Our team of dedicated and experienced doctors is here to help you.",
+            title: "Lorem Ipsum Dolor Sit Amet Consectetur",
+            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.",
             ctaText: "Contact Us",
             ctaLink: "#",
             secondaryButtonText: "Get Consultation",
             secondaryButtonLink: "/services",
-            badge1Text: "Get Expert's Consultation",
-            badge2Text: "24 Hour Support From The Doctors",
+            badge1Text: "Lorem Ipsum Dolor Sit",
+            badge2Text: "Consectetur Adipiscing Elit",
         },
         media: {
             imageUrl: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=800&q=80",
