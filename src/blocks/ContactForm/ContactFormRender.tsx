@@ -58,9 +58,9 @@ export const ContactFormRender = ({ content }: ContactFormProps) => {
 
                 {status === "success" ? (
                     <div className="max-w-2xl mx-auto bg-green-50 p-8 rounded-xl text-center text-green-800 border border-green-200">
-                        <h3 className="text-xl font-bold mb-2">Pesan Terkirim!</h3>
-                        <p>Terima kasih telah menghubungi kami. Kami akan segera membalas pesan Anda.</p>
-                        <button onClick={() => setStatus("idle")} className="mt-4 text-sm underline hover:text-green-900">Kirim pesan lain</button>
+                        <h3 className="text-xl font-bold mb-2">Message Sent!</h3>
+                        <p>Thank you for contacting us. We will get back to you shortly.</p>
+                        <button onClick={() => setStatus("idle")} className="mt-4 text-sm underline hover:text-green-900">Send another message</button>
                     </div>
                 ) : (
                     <form className="max-w-2xl mx-auto space-y-6 bg-gray-50 p-8 rounded-xl border border-gray-100 shadow-sm" onSubmit={onSubmit}>
@@ -76,27 +76,27 @@ export const ContactFormRender = ({ content }: ContactFormProps) => {
 
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>
-                                <label htmlFor="contact-name" className="block text-sm font-medium text-gray-700 mb-2">Nama Lengkap</label>
-                                <input id="contact-name" required name="name" type="text" disabled={isLoading} className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all outline-none disabled:opacity-50" placeholder="Masukkan nama anda" />
+                                <label htmlFor="contact-name" className="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
+                                <input id="contact-name" required name="name" type="text" disabled={isLoading} className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all outline-none disabled:opacity-50" placeholder="Enter your name" />
                             </div>
                             <div>
                                 <label htmlFor="contact-email" className="block text-sm font-medium text-gray-700 mb-2">Email</label>
-                                <input id="contact-email" required name="email" type="email" disabled={isLoading} className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all outline-none disabled:opacity-50" placeholder="email@contoh.com" />
+                                <input id="contact-email" required name="email" type="email" disabled={isLoading} className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all outline-none disabled:opacity-50" placeholder="email@example.com" />
                             </div>
                         </div>
                         <div>
-                            <label htmlFor="contact-subject" className="block text-sm font-medium text-gray-700 mb-2">Subjek</label>
-                            <input id="contact-subject" name="subject" type="text" disabled={isLoading} className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all outline-none disabled:opacity-50" placeholder="Perihal pesanan..." />
+                            <label htmlFor="contact-subject" className="block text-sm font-medium text-gray-700 mb-2">Subject</label>
+                            <input id="contact-subject" name="subject" type="text" disabled={isLoading} className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all outline-none disabled:opacity-50" placeholder="How can we help you..." />
                         </div>
                         <div>
-                            <label htmlFor="contact-message" className="block text-sm font-medium text-gray-700 mb-2">Pesan</label>
-                            <textarea id="contact-message" required name="message" rows={4} disabled={isLoading} className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all outline-none disabled:opacity-50" placeholder="Tulis pesan anda disini..."></textarea>
+                            <label htmlFor="contact-message" className="block text-sm font-medium text-gray-700 mb-2">Message</label>
+                            <textarea id="contact-message" required name="message" rows={4} disabled={isLoading} className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all outline-none disabled:opacity-50" placeholder="Write your message here..."></textarea>
                         </div>
                         <div className="pt-2">
                             <button disabled={isLoading} className="w-full bg-blue-600 hover:bg-blue-700 disabled:opacity-50 text-white font-bold py-4 rounded-lg transition-transform active:scale-95 shadow-lg shadow-blue-500/30">
-                                {isLoading ? "Mengirim..." : submitText}
+                                {isLoading ? "Sending..." : submitText}
                             </button>
-                            {status === "error" && <p className="text-red-500 text-center mt-2 text-sm">Gagal mengirim pesan. Silakan coba lagi.</p>}
+                            {status === "error" && <p className="text-red-500 text-center mt-2 text-sm">Failed to send message. Please try again.</p>}
                         </div>
                     </form>
                 )}

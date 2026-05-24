@@ -23,9 +23,9 @@ export const ContactForm: ComponentConfig<ContactFormProps> = {
     },
     defaultProps: {
         content: {
-            title: "Hubungi Kami",
-            description: "Adalah kehormatan bagi kami untuk melayani Anda. Silakan hubungi kami untuk informasi lebih lanjut.",
-            submitText: "Kirim Pesan",
+            title: "Contact Us",
+            description: "It's our honor to serve you. Please contact us for more information.",
+            submitText: "Send Message",
             emailTo: "info@example.com",
         }
     },
