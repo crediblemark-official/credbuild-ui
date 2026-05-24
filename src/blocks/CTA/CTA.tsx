@@ -76,8 +76,8 @@ export const CTA: ComponentConfig<CTAProps> = {
     },
     defaultProps: {
         content: {
-            title: "Siap Menerbitkan Buku Anda?",
-            subtitle: "Hubungi kami sekarang untuk konsultasi gratis",
+            title: "Ready to get started?",
+            subtitle: "Contact us today to learn more about how we can help you.",
             buttonText: "Mulai Sekarang",
             buttonLink: "#contact",
         },

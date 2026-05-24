@@ -4,15 +4,18 @@ import { useState, useEffect } from "react";
 import { formatPrice, getCurrencySymbol } from "../lib/currency";
 
 export function useCurrency() {
-    const [currency, setCurrency] = useState("USD");
-    const [loading, setLoading] = useState(true);
+    const [currency, setCurrency] = useState(() => {
+        if (typeof window !== "undefined") {
+            return localStorage.getItem("storeCurrency") || "USD";
+        }
+        return "USD";
+    });
+
+    const shouldFetch = typeof window !== "undefined" && window.location.protocol.startsWith("http");
+    const [loading, setLoading] = useState(shouldFetch);
 
     useEffect(() => {
-        // Try to get from local storage first for immediate render
-        const saved = localStorage.getItem("storeCurrency");
-        if (saved) {
-            Promise.resolve().then(() => setCurrency(saved));
-        }
+        if (!shouldFetch) return;
 
         // Fetch authoritative setting from server
         fetch("/api/settings/payments")
@@ -31,7 +34,7 @@ export function useCurrency() {
             })
             .catch(err => console.error("Currency fetch error:", err))
             .finally(() => setLoading(false));
-    }, []);
+    }, [shouldFetch]);
 
     const format = (price: number | string) => {
         return formatPrice(price, currency);

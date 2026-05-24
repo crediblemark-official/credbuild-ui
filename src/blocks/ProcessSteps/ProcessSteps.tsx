@@ -22,7 +22,7 @@ export const ProcessSteps: ComponentConfig<ProcessStepsProps> = {
                     arrayFields: {
                         title: { type: "text", label: "Step Title" },
                         description: { type: "textarea", label: "Description" },
-                        icon: { type: "text", label: "Icon (optional, e.g. fa-rocket)" },
+                        icon: { type: "text", label: "Icon (Copy class from fontawesome.com, e.g. fa-solid fa-rocket)" },
                     },
                     getItemSummary: (item, index) => item.title || `Step ${(index !== undefined ? index + 1 : 1)}`,
                 },
@@ -87,11 +87,11 @@ export const ProcessSteps: ComponentConfig<ProcessStepsProps> = {
     },
     defaultProps: {
         content: {
-            title: "Cara Kerja Kami",
+            title: "Our Process",
             steps: [
-                { title: "Konsultasi", description: "Bicarakan kebutuhan proyek Anda dengan tim ahli kami secara gratis." },
-                { title: "Perencanaan", description: "Kami menyusun strategi dan timeline yang detail untuk hasil maksimal." },
-                { title: "Eksekusi", description: "Tim kami mulai bekerja dengan standar kualitas tertinggi dan transparan." },
+                { title: "Lorem Ipsum", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit." },
+                { title: "Dolor Sit Amet", description: "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." },
+                { title: "Consectetur", description: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris." },
             ],
         },
         typography: {

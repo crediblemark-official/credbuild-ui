@@ -107,8 +107,8 @@ export const Gallery: ComponentConfig<GalleryProps> = {
     },
     defaultProps: {
         content: {
-            title: "Buku Terbitan KBM",
-            description: "Koleksi karya terbaik dari penulis-penulis berbakat kami.",
+            title: "Our Gallery",
+            description: "A showcase of our best work and projects.",
         },
         typography: {
             titleFont: "inherit",

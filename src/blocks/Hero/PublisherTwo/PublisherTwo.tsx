@@ -162,8 +162,8 @@ export const HeroPublisherTwo: ComponentConfig<HeroPublisherTwoProps> = {
     },
     defaultProps: {
         content: {
-            title: "Bukumu Segera Terbit!",
-            description: "Penerbit KBM telah menerbitkan lebih dari 3000 judul buku. Yuk, tingkatkan personal brandingmu dan torehkan sejarah anda dengan buku, sebab buku adalah kartu terbaik anda.",
+            title: "Lorem Ipsum Dolor Sit Amet",
+            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
         },
         media: {
             imageUrl: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=800",

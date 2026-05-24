@@ -91,11 +91,11 @@ export const Accordion: ComponentConfig<AccordionProps> = {
     },
     defaultProps: {
         content: {
-            title: "Pertanyaan Umum",
+            title: "Frequently Asked Questions",
             items: [
-                { question: "Bagaimana cara mengirim naskah?", answer: "Kirim via email atau form website kami. Pastikan naskah sudah rapi dan lengkap." },
-                { question: "Berapa lama proses penerbitan?", answer: "Standar 3-4 minggu untuk paket reguler, namun bisa lebih cepat dengan paket ekspres." },
-                { question: "Apakah ada biaya tersembunyi?", answer: "Tidak ada. Semua biaya transparan dan tertera di paket harga." },
+                { question: "Lorem ipsum dolor sit amet?", answer: "Consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." },
+                { question: "Ut enim ad minim veniam?", answer: "Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat." },
+                { question: "Duis aute irure dolor in reprehenderit?", answer: "In voluptate velit esse cillum dolore eu fugiat nulla pariatur." },
             ],
         },
         typography: {},

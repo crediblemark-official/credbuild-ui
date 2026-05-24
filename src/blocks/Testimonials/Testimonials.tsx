@@ -115,13 +115,13 @@ export const Testimonials: ComponentConfig<TestimonialsProps> = {
     },
     defaultProps: {
         content: {
-            title: "Apa Kata Mereka",
-            description: "Testimoni dari klien kami yang puas.",
+            title: "What Our Clients Say",
+            description: "Testimonials from our satisfied customers.",
             limit: 6,
             items: [
-                { quote: "Layanan penerbitan yang sangat profesional dan cepat. Buku saya terbit dalam waktu kurang dari sebulan dengan kualitas cetak dan layout yang sangat premium!", author: "Budi Santoso", role: "Penulis Novel & Akademisi" },
-                { quote: "Sangat terbantu dengan tim desain cover dan editingnya. Mereka sangat sabar mendengarkan revisi dan memberikan masukan yang konstruktif.", author: "Siti Rahma", role: "Penulis Buku Anak" },
-                { quote: "Distribusi ke toko buku fisik maupun e-book sangat luas. Royalti transparan dan laporan penjualan selalu tepat waktu setiap bulan.", author: "Andi Wijaya", role: "Self-Publisher" },
+                { quote: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", author: "John Doe", role: "CEO, Company A" },
+                { quote: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.", author: "Jane Smith", role: "CTO, Company B" },
+                { quote: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.", author: "Alice Johnson", role: "Designer" },
             ],
         },
         typography: {

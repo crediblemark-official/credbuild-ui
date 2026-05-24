@@ -1,6 +1,6 @@
 {
   "name": "@crediblemark/build-ui",
-  "version": "0.25.6",
+  "version": "0.25.7",
   "description": "Visual Builder companion blocks for Crediblemark",
   "author": "Rasyiqi Crediblemark",
   "repository": {
@@ -51,7 +51,7 @@
   },
   "peerDependencies": {
     "react": "^19.2.6",
-    "@crediblemark/build": "^0.25.4"
+    "@crediblemark/build": "^0.25.5"
   },
   "devDependencies": {
     "@happy-dom/global-registrator": "^20.9.0",

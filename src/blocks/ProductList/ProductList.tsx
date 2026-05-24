@@ -167,7 +167,7 @@ export const ProductList: ComponentConfig<ProductListProps> = {
                 },
                 cardTitleColor: {
                     type: "custom",
-                    label: "Warna Judul Produk/Buku",
+                    label: "Warna Judul Produk",
                     render: ({ value, onChange }) => <ColorPickerField value={value || ""} onChange={(v) => onChange(v as any)} />
                 },
                 showCardBorder: {
@@ -183,7 +183,7 @@ export const ProductList: ComponentConfig<ProductListProps> = {
                     label: "Aspek Rasio Gambar",
                     options: [
                         { label: "Standard (4:5)", value: "aspect-[4/5]" },
-                        { label: "Buku / Portrait (2:3)", value: "aspect-[2/3]" },
+                        { label: "Portrait (2:3)", value: "aspect-[2/3]" },
                         { label: "Persegi (1:1)", value: "aspect-[1/1]" },
                         { label: "Landscape (16:9)", value: "aspect-[16/9]" }
                     ]
@@ -201,8 +201,8 @@ export const ProductList: ComponentConfig<ProductListProps> = {
     },
     defaultProps: {
         content: {
-            title: "Produk Unggulan",
-            description: "Koleksi buku terbaik dari penulis pilihan.",
+            title: "Featured Products",
+            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
             limit: 4,
             categorySlug: "",
             sortBy: "newest",

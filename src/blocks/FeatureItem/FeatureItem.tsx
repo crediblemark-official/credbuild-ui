@@ -21,7 +21,7 @@ export const FeatureItem: ComponentConfig<FeatureItemProps> = {
                     type: "array",
                     label: "Daftar Kartu",
                     arrayFields: {
-                        icon: { type: "text", label: "Ikon (Lucide)" },
+                        icon: { type: "text", label: "Ikon (Copy dari lucide.dev/icons)" },
                         badge: { type: "text", label: "Label Badge" },
                         title: { type: "text", label: "Judul" },
                         description: { type: "textarea", label: "Deskripsi" },
@@ -204,26 +204,26 @@ export const FeatureItem: ComponentConfig<FeatureItemProps> = {
             items: [
                 {
                     icon: "Shield",
-                    title: "Kualitas Premium",
-                    description: "Fitur berkualitas tinggi untuk kebutuhan profesional Anda.",
-                    badge: "Terbaik",
-                    buttonText: "Pelajari Lebih Lanjut",
+                    title: "Premium Quality",
+                    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                    badge: "Best",
+                    buttonText: "Learn More",
                     buttonLink: "#",
                 },
                 {
                     icon: "Zap",
-                    title: "Performa Cepat",
-                    description: "Dioptimalkan untuk kecepatan dan efisiensi di setiap level.",
+                    title: "Fast Performance",
+                    description: "Sed do eiusmod tempor incididunt ut labore et dolore magna.",
                     badge: "",
-                    buttonText: "Pelajari Lebih Lanjut",
+                    buttonText: "Learn More",
                     buttonLink: "#",
                 },
                 {
                     icon: "Clock",
-                    title: "Dukungan 24/7",
-                    description: "Tim dukungan berdedikasi tersedia sepanjang waktu.",
+                    title: "24/7 Support",
+                    description: "Ut enim ad minim veniam, quis nostrud exercitation ullamco.",
                     badge: "",
-                    buttonText: "Pelajari Lebih Lanjut",
+                    buttonText: "Learn More",
                     buttonLink: "#",
                 }
             ]

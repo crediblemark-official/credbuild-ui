@@ -135,27 +135,27 @@ export const PricingSimple: ComponentConfig<PricingSimpleProps> = {
     },
     defaultProps: {
         content: {
-            title: "Paket Penerbitan",
+            title: "Pricing Plans",
             items: [
                 {
-                    name: "Paket Majapahit",
-                    subtitle: "Untuk Pemula",
-                    price: "Rp 3.000.000",
-                    priceSuffix: "/naskah",
-                    buttonText: "Pilih Majapahit",
+                    name: "Basic Plan",
+                    subtitle: "For Beginners",
+                    price: "$99",
+                    priceSuffix: "/month",
+                    buttonText: "Choose Basic",
                     buttonUrl: "#",
-                    features: [{ feature: "ISBN + Barcode", available: true }]
+                    features: [{ feature: "Core Features", available: true }]
                 },
                 {
-                    highlightLabel: "Terpopuler",
-                    name: "Paket Nusantara",
-                    subtitle: "Paling Lengkap",
-                    price: "Rp 5.000.000",
-                    priceSuffix: "All in One",
-                    buttonText: "Pilih Nusantara",
+                    highlightLabel: "Most Popular",
+                    name: "Pro Plan",
+                    subtitle: "For Professionals",
+                    price: "$199",
+                    priceSuffix: "/month",
+                    buttonText: "Choose Pro",
                     buttonUrl: "#",
-                    buttonDesc: "* Slot terbatas bulan ini",
-                    features: [{ feature: "Semua di Majapahit", available: true }]
+                    buttonDesc: "* Limited time offer",
+                    features: [{ feature: "All Basic Features + Premium", available: true }]
                 },
             ],
         },

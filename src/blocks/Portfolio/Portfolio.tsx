@@ -21,8 +21,8 @@ export const Portfolio: ComponentConfig<PortfolioProps> = {
     },
     defaultProps: {
         content: {
-            title: "Karya Pilihan",
-            subtitle: "Portofolio proyek terbaru yang telah kami kerjakan dengan sepenuh hati.",
+            title: "Featured Projects",
+            subtitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         }
     },
     render: (props) => <PortfolioRender {...props} />,

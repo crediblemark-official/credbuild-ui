@@ -88,12 +88,12 @@ export const Team: ComponentConfig<TeamProps> = {
     },
     defaultProps: {
         content: {
-            title: "Kenali Tim Kami",
-            subtitle: "Orang-orang berbakat yang berdedikasi untuk memberikan hasil terbaik untuk Anda.",
+            title: "Meet Our Team",
+            subtitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
             members: [
-                { name: "Andi Wijaya", role: "Creative Director", bio: "Berpengalaman lebih dari 10 tahun di industri kreatif." },
-                { name: "Siti Aminah", role: "Lead Developer", bio: "Spesialis dalam pengembangan sistem berbasis cloud." },
-                { name: "Budi Santoso", role: "Project Manager", bio: "Memastikan setiap proyek berjalan tepat waktu dan sesuai budget." },
+                { name: "John Doe", role: "Creative Director", bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit." },
+                { name: "Jane Doe", role: "Lead Developer", bio: "Sed do eiusmod tempor incididunt ut labore et dolore." },
+                { name: "Jim Smith", role: "Project Manager", bio: "Ut enim ad minim veniam, quis nostrud exercitation." },
             ],
         },
         typography: {

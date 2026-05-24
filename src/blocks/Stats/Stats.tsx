@@ -110,9 +110,9 @@ export const Stats: ComponentConfig<StatsProps> = {
     defaultProps: {
         content: {
             items: [
-                { value: "100+", label: "Judul Buku" },
-                { value: "500+", label: "Eksemplar" },
-                { value: "50+", label: "Penulis Puas" },
+                { value: "100+", label: "Lorem Ipsum" },
+                { value: "500+", label: "Dolor Sit" },
+                { value: "50+", label: "Amet Consectetur" },
             ],
         },
         typography: {},

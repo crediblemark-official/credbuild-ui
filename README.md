@@ -88,6 +88,66 @@ export default config;
 
 ---
 
+## 🖼️ Media Library Setup (Next.js)
+
+The companion blocks (like Hero sections and Galleries) utilize a built-in **Media Picker** which expects two Next.js API endpoints to function properly: `/api/media` for uploading/listing files, and `/api/media/proxy` for avoiding CORS issues on external images.
+
+You must implement these endpoints in your project. Below is a simple local storage simulator (saving to `public/uploads`) you can use during development:
+
+**1. `src/app/api/media/proxy/route.ts` (CORS Proxy)**
+```typescript
+import { NextResponse } from 'next/server';
+
+export async function GET(request: Request) {
+  const url = new URL(request.url).searchParams.get('url');
+  if (!url) return new NextResponse('Missing url parameter', { status: 400 });
+
+  try {
+    const response = await fetch(url);
+    const buffer = await response.arrayBuffer();
+    return new NextResponse(buffer, {
+      headers: { 'Content-Type': response.headers.get('content-type') || 'image/jpeg' },
+    });
+  } catch (error) {
+    return new NextResponse('Error fetching image', { status: 500 });
+  }
+}
+```
+
+**2. `src/app/api/media/route.ts` (Uploads & Gallery)**
+```typescript
+import { NextResponse } from 'next/server';
+import { writeFile, mkdir } from 'fs/promises';
+import { join } from 'path';
+
+let mediaStore: any[] = []; // In-memory database for dev
+
+export async function GET() {
+  return NextResponse.json({ data: mediaStore });
+}
+
+export async function POST(request: Request) {
+  const file = (await request.formData()).get('file') as File;
+  if (!file) return NextResponse.json({ error: "No file" }, { status: 400 });
+
+  const buffer = Buffer.from(await file.arrayBuffer());
+  const filename = `${Date.now()}-${file.name.replace(/[^a-zA-Z0-9.-]/g, '_')}`;
+  
+  await mkdir(join(process.cwd(), 'public', 'uploads'), { recursive: true });
+  await writeFile(join(process.cwd(), 'public', 'uploads', filename), buffer);
+
+  const mediaItem = {
+    id: Date.now().toString(), filename: file.name,
+    url: `/uploads/${filename}`, mimeType: file.type, size: file.size,
+  };
+  mediaStore = [mediaItem, ...mediaStore];
+  
+  return NextResponse.json(mediaItem);
+}
+```
+
+---
+
 ## 📜 License
 
 MIT © [Rasyiqi Crediblemark](https://github.com/crediblemark-official)

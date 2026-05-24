@@ -22,7 +22,7 @@ export const InfoGrid: ComponentConfig<InfoGridProps> = {
                     type: "array",
                     label: "Daftar Informasi",
                     arrayFields: {
-                        icon: { type: "text", label: "Ikon (Lucide)" },
+                        icon: { type: "text", label: "Ikon (Copy dari lucide.dev/icons)" },
                         label: { type: "text", label: "Label (Nama Data)" },
                         value: { type: "textarea", label: "Value (Isi Data)" },
                     },
@@ -150,27 +150,27 @@ export const InfoGrid: ComponentConfig<InfoGridProps> = {
     },
     defaultProps: {
         content: {
-            title: "Informasi Perusahaan",
+            title: "Company Information",
             items: [
                 {
                     icon: "Calendar",
-                    label: "Didirikan",
-                    value: "2017 | Fokus Ekspansi sejak 2023",
+                    label: "Founded",
+                    value: "2017 | Expanding since 2023",
                 },
                 {
                     icon: "MapPin",
-                    label: "Lokasi",
-                    value: "Paingan, Maguwoharjo, Depok, Sleman, DI Yogyakarta",
+                    label: "Location",
+                    value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
                 },
                 {
                     icon: "User",
-                    label: "Owner & Pendiri",
-                    value: "Mohammad Imam Junaidi, S.E., M.H.\nPraktisi Advokasi Hukum, Kepenulisan & Motivasi Literasi",
+                    label: "Founder & CEO",
+                    value: "John Doe\nLorem ipsum dolor sit amet",
                 },
                 {
                     icon: "Users",
-                    label: "Keanggotaan",
-                    value: "Bergabung di PCJ (Paguyuban Cetak Jogjakarta)",
+                    label: "Membership",
+                    value: "Lorem Ipsum Dolor Sit Amet",
                 }
             ]
         },

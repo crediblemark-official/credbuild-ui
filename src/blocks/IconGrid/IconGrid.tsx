@@ -22,7 +22,7 @@ export const IconGrid: ComponentConfig<IconGridProps> = {
                     arrayFields: {
                         title: { type: "text", label: "Title" },
                         description: { type: "textarea", label: "Description" },
-                        icon: { type: "text", label: "Icon" },
+                        icon: { type: "text", label: "Icon (Emoji or FontAwesome class)" },
                     },
                     getItemSummary: (item) => item.title || "Item",
                 },
@@ -101,11 +101,11 @@ export const IconGrid: ComponentConfig<IconGridProps> = {
     },
     defaultProps: {
         content: {
-            title: "Mengapa Memilih KBM?",
+            title: "Why Choose Us?",
             items: [
-                { title: "Profesional", description: "Tim profesional siap melayani", icon: "★" },
-                { title: "Royalty 100%", description: "Tanpa potongan apapun", icon: "★" },
-                { title: "Transparan", description: "Proses transparan dari awal", icon: "★" },
+                { title: "Lorem Ipsum", description: "Lorem ipsum dolor sit amet.", icon: "★" },
+                { title: "Dolor Sit Amet", description: "Consectetur adipiscing elit.", icon: "★" },
+                { title: "Sed Do Eiusmod", description: "Tempor incididunt ut labore.", icon: "★" },
             ],
         },
         typography: {

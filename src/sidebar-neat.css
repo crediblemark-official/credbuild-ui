@@ -1,20 +1,38 @@
-/* 
-  SitusBisnis Studio Refinement (Ultra Compact - Premium Matrix)
-  Focused on extreme space efficiency
-*/
+/* ==========================================================================
+   Layer 3: COMPACT SIZING
+   Tanggung jawab: Padding, height, font-size, margin — ukuran kompak.
+   Aturan: Pakai !important HANYA untuk sizing properties.
+            TIDAK mengatur warna — itu tugas Layer 2 (bundle/index.css).
+            Warna menggunakan var(--cb-*) agar mengikuti tema.
+   ========================================================================== */
 
-/* Main Sidebar Area Padding */
+/* --- Search Blocks Input --- */
+.CredBuild [class*="CredBuildComponents-searchContainer"] {
+  padding: 2px 8px !important;
+}
+
+.CredBuild [class*="CredBuildComponents-searchInput"] {
+  height: 28px !important;
+  min-height: 28px !important;
+  padding: 0 28px 0 10px !important;
+  font-size: 11px !important;
+}
+
+.CredBuild [class*="CredBuildComponents-searchIcon"] {
+  display: none !important;
+}
+
+/* --- Sidebar Area --- */
 [class*="Sidebar-root"],
 .CredBuild [class*="Sidebar-content"],
 .CredBuild [class*="Sidebar-area"] {
   padding: 3px !important;
 }
 
-/* Sidebar Header / Breadcrumbs */
+/* --- Sidebar Header / Breadcrumbs --- */
 .CredBuild [class*="Sidebar-header"] {
   padding: 4px 8px !important;
   min-height: auto !important;
-  border-bottom: 1px solid #e2e8f0 !important;
 }
 
 .CredBuild [class*="Path-container"] {
@@ -22,7 +40,7 @@
   padding: 0 !important;
 }
 
-/* Section Containers (Accordions) */
+/* --- Section Containers (Accordions) --- */
 .CredBuild [class*="SidebarSection"] {
   margin-bottom: 1px !important;
   margin-top: 0px !important;
@@ -31,50 +49,40 @@
   height: auto !important;
 }
 
-/* Section Headers (Accordions) - Extremely Compact and Clean */
+/* --- Section Headers --- */
 .CredBuild [class*="SidebarSection-title"] {
   font-size: 10px !important;
   font-weight: 700 !important;
-  color: #1e293b !important;
   padding: 2px 6px !important;
   margin: 0 !important;
-  background-color: #f8fafc !important;
-  border: 1px solid #e2e8f0 !important;
-  border-radius: 3px !important;
-  cursor: pointer !important;
-  display: flex !important;
-  align-items: center !important;
   min-height: 24px !important;
 }
 
-/* Individual Field Labels - Even Smaller & Closer */
+/* --- Field Labels --- */
 .CredBuild [class*="AutoField-label"] {
   font-size: 9px !important;
   font-weight: 600 !important;
-  color: #475569 !important;
   margin-bottom: 1px !important;
   margin-top: 1px !important;
 }
 
-/* Sidebar Section Content Padding - Tightened */
+/* --- Section Content Padding --- */
 .CredBuild [class*="SidebarSection-content"] {
   padding: 2px 4px !important;
-  border: none !important;
 }
 
-/* Remove horizontal rules/dividers between fields */
+/* --- Field Spacing --- */
 .CredBuild [class*="AutoField"] {
-  border: none !important;
   margin-bottom: 3px !important;
   padding: 0 !important;
 }
 
-/* Tighten container padding of fields inside the right sidebar */
+/* --- Field Container Padding --- */
 .CredBuild [class*="CredBuildFields-field"] {
   padding: 2px 4px !important;
 }
 
-/* Inputs & Selects - Studio Height (Specific to prevent range/color picker conflicts) */
+/* --- Form Inputs & Selects (sizing only) --- */
 .CredBuild input[type="text"],
 .CredBuild input[type="number"],
 .CredBuild input[type="email"],
@@ -85,66 +93,35 @@
 [class*="ExternalInput-input"],
 [class*="Select-select"] {
   padding: 2px 6px !important;
-  font-size: 10px !important;
-  min-height: 24px !important;
-  height: 24px !important;
-  border-radius: 3px !important;
-  border: 1px solid #e2e8f0 !important;
-  background-color: #ffffff !important;
-  color: #1e293b !important;
+  font-size: 12px !important;
+  min-height: 28px !important;
+  height: auto !important;
+  box-sizing: border-box !important;
 }
 
-/* Color Swatch Wrapper Size Refinement */
+/* --- Color Swatch Wrapper --- */
 .CredBuild div:has(> input[type="color"]) {
   width: 24px !important;
   height: 24px !important;
-  border-radius: 3px !important;
 }
 
-/* Color Picker Native Swatch Cleanups (removes Chrome native borders/lines inside swatch) */
-.CredBuild input[type="color"] {
-  width: 100% !important;
-  height: 100% !important;
-  top: 0 !important;
-  left: 0 !important;
-  position: absolute !important;
-  background: transparent !important;
-  border: none !important;
-  padding: 0 !important;
-  margin: 0 !important;
-}
-
-.CredBuild input[type="color"]::-webkit-color-swatch-wrapper {
-  padding: 0 !important;
-}
-
-.CredBuild input[type="color"]::-webkit-color-swatch {
-  border: none !important;
-  border-radius: 2px !important;
-}
-
-.CredBuild input[type="color"]::-moz-color-swatch {
-  border: none !important;
-  border-radius: 2px !important;
-}
-
-/* Override inline padding for ColorPickerField outer wrapper */
+/* --- Color Picker Override (sizing for inline padding) --- */
 .CredBuild div:has(> div > input[type="color"]) {
   padding: 1px 0 !important;
 }
 
-/* Override inline padding for SliderField outer wrapper */
+/* --- Slider Field Override (sizing for inline padding) --- */
 .CredBuild div:has(> div > .cb-slider-input) {
   padding: 1px 0 !important;
 }
 
-/* Shrink standard range slider input height & margins */
+/* --- Range Slider --- */
 .CredBuild input.cb-slider-input {
   margin: 4px 0 !important;
   height: 2px !important;
 }
 
-/* Shrink the number and select inputs inside SliderField */
+/* --- Slider Number Input --- */
 .CredBuild input.cb-number-input {
   height: 20px !important;
   font-size: 9px !important;
@@ -152,6 +129,7 @@
   width: 38px !important;
 }
 
+/* --- Slider Select Input --- */
 .CredBuild select.cb-select-input {
   height: 20px !important;
   font-size: 9px !important;
@@ -159,10 +137,9 @@
   width: 36px !important;
 }
 
-/* Shrink ResponsiveSliderField mode selectors */
+/* --- Responsive Mode Selectors --- */
 .CredBuild div:has(> button[title="Desktop"]) {
   padding: 0px !important;
-  border-radius: 3px !important;
 }
 
 .CredBuild button[title="Desktop"],
@@ -170,10 +147,6 @@
 .CredBuild button[title="Mobile"] {
   padding: 1px 3px !important;
   height: 16px !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  border-radius: 2px !important;
 }
 
 .CredBuild button[title="Desktop"] svg,
@@ -183,27 +156,19 @@
   height: 10px !important;
 }
 
-/* Array/Item Boxes - Minimalist & Ultra Tight */
+/* --- Array/Item Boxes --- */
 [class*="Array-item"],
 [class*="Field-list"]>div {
-  border: 1px solid #e2e8f0 !important;
-  background-color: #f8fafc !important;
   margin-bottom: 3px !important;
   padding: 4px 6px !important;
-  border-radius: 3px !important;
 }
 
-/* Scrollbar refinement for Sidebar */
+/* --- Scrollbar Sizing (Sidebar) --- */
 .CredBuild [class*="Sidebar"] ::-webkit-scrollbar {
   width: 3px !important;
 }
 
-.CredBuild [class*="Sidebar"] ::-webkit-scrollbar-thumb {
-  background: #cbd5e1 !important;
-  border-radius: 10px !important;
-}
-
-/* Sleek custom scrollbars for iframe canvas, root document inside iframe, and all scrollable regions */
+/* --- Global Scrollbar Sizing --- */
 #preview-frame::-webkit-scrollbar,
 #preview-frame *::-webkit-scrollbar,
 .CredBuildCanvas::-webkit-scrollbar,

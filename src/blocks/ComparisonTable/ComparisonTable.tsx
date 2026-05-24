@@ -80,13 +80,13 @@ export const ComparisonTable: ComponentConfig<ComparisonTableProps> = {
     },
     defaultProps: {
         content: {
-            title: "Pilih Paket Terbaik",
+            title: "Choose the Best Plan",
             plans: [{ name: "Starter" }, { name: "Pro" }, { name: "Business" }],
             features: [
-                { name: "Penerbitan ISBN", values: [{ value: "true" }, { value: "true" }, { value: "true" }] },
-                { name: "Desain Cover", values: [{ value: "Standar" }, { value: "Custom" }, { value: "Premium" }] },
-                { name: "Distribusi Toko Buku", values: [{ value: "false" }, { value: "true" }, { value: "true" }] },
-                { name: "Marketing Kit", values: [{ value: "false" }, { value: "false" }, { value: "true" }] },
+                { name: "Feature One", values: [{ value: "true" }, { value: "true" }, { value: "true" }] },
+                { name: "Feature Two", values: [{ value: "Standard" }, { value: "Custom" }, { value: "Premium" }] },
+                { name: "Feature Three", values: [{ value: "false" }, { value: "true" }, { value: "true" }] },
+                { name: "Feature Four", values: [{ value: "false" }, { value: "false" }, { value: "true" }] },
             ],
         },
         styling: {

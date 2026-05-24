@@ -96,8 +96,8 @@ export const HeroPublisher: ComponentConfig<HeroPublisherProps> = {
     },
     defaultProps: {
         content: {
-            title: "The Art of Publishing",
-            description: "Discover the stories that shape our world.",
+            title: "Lorem Ipsum Dolor",
+            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
             date: "Oct 12, 2023",
             author: "John Doe",
         },

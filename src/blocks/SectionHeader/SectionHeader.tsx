@@ -87,9 +87,9 @@ export const SectionHeader: ComponentConfig<SectionHeaderProps> = {
     },
     defaultProps: {
         content: {
-            badge: "Layanan Unggulan",
-            title: "Solusi Penerbitan Buku Terbaik untuk Anda",
-            subtitle: "Kami membantu penulis mewujudkan impian mereka menjadi kenyataan dengan layanan profesional dan terpercaya.",
+            badge: "Featured Service",
+            title: "The Best Solution For Your Needs",
+            subtitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
         },
         styling: {
             alignment: "center",
