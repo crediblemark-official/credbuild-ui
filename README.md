@@ -1,6 +1,6 @@
 # @crediblemark/build-ui
 
-The official companion visual blocks library for **Crediblemark**. Packaged with 45+ highly polished, production-ready premium blocks (from business layouts, headers, hero blocks, to grids and custom pricing panels) to speed up your page-building workflow.
+The official companion visual blocks library for https://www.npmjs.com/package/@crediblemark/build . Packaged with 45+ highly polished, production-ready premium blocks (from business layouts, headers, hero blocks, to grids and custom pricing panels) to speed up your page-building workflow.
 
 [![npm version](https://img.shields.io/npm/v/@crediblemark/build-ui.svg)](https://www.npmjs.com/package/@crediblemark/build-ui)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
