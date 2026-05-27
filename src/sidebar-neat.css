@@ -88,7 +88,7 @@
 .CredBuild input[type="email"],
 .CredBuild input[type="password"],
 .CredBuild input[type="url"],
-.CredBuild textarea,
+.CredBuild textarea:not([class*="htmlTextarea"]):not([class*="cb-ai"]),
 .CredBuild select,
 [class*="ExternalInput-input"],
 [class*="Select-select"] {
