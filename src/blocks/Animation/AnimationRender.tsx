@@ -13,7 +13,7 @@ export const AnimationRender = ({ content, styling }: AnimationProps) => {
     } = content || {};
     const {
         color = "#ef4444",
-        size = 32,
+        size,
         speed = "normal",
         alignment = "center",
         paddingTop,

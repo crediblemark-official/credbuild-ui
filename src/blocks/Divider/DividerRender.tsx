@@ -8,7 +8,7 @@ export const DividerRender = ({ content, styling }: DividerProps) => {
     const { lineStyle = "solid" } = content || {};
     const {
         color = "#e2e8f0",
-        height = 2,
+        height,
         maxWidth,
         alignment = "center",
         paddingTop,
