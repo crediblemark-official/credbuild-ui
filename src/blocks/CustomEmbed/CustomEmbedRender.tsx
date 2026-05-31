@@ -5,7 +5,7 @@ import { getVal, getMobileVal } from "../../utils";
 import { CustomEmbedProps } from "./types";
 
 export const CustomEmbedRender = ({ content, styling }: CustomEmbedProps) => {
-    const { html, script } = content;
+    const { html, script, renderMode } = content;
     const { backgroundColor, padding, maxWidth, alignment } = styling;
 
     const id = useId().replace(/:/g, '');
@@ -19,8 +19,18 @@ export const CustomEmbedRender = ({ content, styling }: CustomEmbedProps) => {
         }
     }, []);
 
-    // Listen to resize messages from the sandboxed iframe
+    // Clean html for auto-detection
+    const trimmedHtml = html ? html.trim() : "";
+    // Detect if input is strictly a single <iframe> tag
+    const isPureIframe = /^<iframe\b[^>]*>([\s\S]*?)<\/iframe>$/i.test(trimmedHtml);
+
+    // Determine the active rendering mode (fallback to auto-detection if renderMode is undefined)
+    const activeMode = renderMode || (isPureIframe ? "iframe-open" : "sandboxed");
+
+    // Listen to resize messages from the iframe (only needed for sandboxed or iframe-open modes)
     useEffect(() => {
+        if (activeMode === "direct") return;
+
         const handleMessage = (event: MessageEvent) => {
             if (
                 event.data &&
@@ -33,7 +43,54 @@ export const CustomEmbedRender = ({ content, styling }: CustomEmbedProps) => {
 
         window.addEventListener("message", handleMessage);
         return () => window.removeEventListener("message", handleMessage);
-    }, [id]);
+    }, [id, activeMode]);
+
+    // Handle script tag parsing and execution inside Direct DOM mode
+    useEffect(() => {
+        if (activeMode !== "direct" || !html) return;
+
+        // Parse HTML to extract scripts
+        const tempDiv = document.createElement("div");
+        tempDiv.innerHTML = html;
+        const scriptElements = Array.from(tempDiv.querySelectorAll("script"));
+
+        const loadedScripts: HTMLScriptElement[] = [];
+
+        scriptElements.forEach((oldScript) => {
+            const newScript = document.createElement("script");
+            
+            // Copy all attributes
+            Array.from(oldScript.attributes).forEach((attr) => {
+                newScript.setAttribute(attr.name, attr.value);
+            });
+
+            // Set content or source URL
+            if (oldScript.src) {
+                newScript.src = oldScript.src;
+            } else {
+                newScript.textContent = oldScript.textContent;
+            }
+
+            document.body.appendChild(newScript);
+            loadedScripts.push(newScript);
+        });
+
+        // Parse and execute optional secondary JavaScript field
+        let secondaryScriptEl: HTMLScriptElement | null = null;
+        if (script) {
+            secondaryScriptEl = document.createElement("script");
+            secondaryScriptEl.textContent = script;
+            document.body.appendChild(secondaryScriptEl);
+        }
+
+        return () => {
+            // Cleanup injected scripts on unmount to avoid memory leaks or duplicate widget triggers
+            loadedScripts.forEach((s) => s.remove());
+            if (secondaryScriptEl) {
+                secondaryScriptEl.remove();
+            }
+        };
+    }, [html, script, activeMode]);
 
     const resizeScript = `
         <script>
@@ -44,7 +101,7 @@ export const CustomEmbedRender = ({ content, styling }: CustomEmbedProps) => {
             window.addEventListener('load', sendHeight);
             window.addEventListener('resize', sendHeight);
             
-            // Lacak perubahan layout dinamis (seperti saat Tailwind selesai compile style)
+            // Track dynamic observer changes (such as when Tailwind finishes styling compiles)
             if (window.ResizeObserver) {
                 new ResizeObserver(sendHeight).observe(document.body);
             } else {
@@ -52,18 +109,6 @@ export const CustomEmbedRender = ({ content, styling }: CustomEmbedProps) => {
             }
         </script>
     `;
-
-    let srcDoc = "";
-    const isStandalone = html && (html.includes("<html") || html.includes("<!DOCTYPE") || html.includes("<body") || html.includes("<head>"));
-
-    // Deteksi apakah konten menggunakan Tailwind CSS (memiliki link/script CDN, keyword tailwind,
-    // atau menggunakan class utilitas khas Tailwind).
-    const needsTailwind = html && (
-        html.includes("cdn.tailwindcss.com") ||
-        html.includes("tailwind.js") ||
-        html.includes("tailwindcss") ||
-        /\b(bg-|text-|p[xy]?[-0-9]|m[xy]?[-0-9]|flex|grid|border-|rounded-|shadow-|justify-|items-|gap-|relative|absolute|hidden|w-|h-|leading-|tracking-|font-|transition|duration-|ease-|hover:|focus:|sm:|md:|lg:|xl:)/.test(html)
-    );
 
     const scrollbarHideStyle = `
         <style>
@@ -78,59 +123,73 @@ export const CustomEmbedRender = ({ content, styling }: CustomEmbedProps) => {
         </style>
     `;
 
-    if (isStandalone) {
-        let processedHtml = html;
+    // Construct srcDoc for iframes
+    let srcDoc = "";
+    const isStandalone = html && (html.includes("<html") || html.includes("<!DOCTYPE") || html.includes("<body") || html.includes("<head>"));
 
-        // Inject script resize sebelum penutup body
-        if (processedHtml.includes("</body>")) {
-            processedHtml = processedHtml.replace("</body>", `${resizeScript}${scrollbarHideStyle}</body>`);
-        } else {
-            processedHtml = processedHtml + resizeScript + scrollbarHideStyle;
-        }
+    // Detect if content uses Tailwind utility classes
+    const needsTailwind = html && (
+        html.includes("cdn.tailwindcss.com") ||
+        html.includes("tailwind.js") ||
+        html.includes("tailwindcss") ||
+        /\b(bg-|text-|p[xy]?[-0-9]|m[xy]?[-0-9]|flex|grid|border-|rounded-|shadow-|justify-|items-|gap-|relative|absolute|hidden|w-|h-|leading-|tracking-|font-|transition|duration-|ease-|hover:|focus:|sm:|md:|lg:|xl:)/.test(html)
+    );
 
-        // Inject Tailwind CDN secara dinamis hanya jika kode memang menggunakan kelas Tailwind
-        if (needsTailwind && !processedHtml.includes("cdn.tailwindcss.com") && !processedHtml.includes("tailwind.js") && !processedHtml.includes("tailwindcss")) {
-            if (processedHtml.includes("</head>")) {
-                processedHtml = processedHtml.replace("</head>", `<script src="${tailwindUrl}"></script></head>`);
-            } else if (processedHtml.includes("<head>")) {
-                processedHtml = processedHtml.replace("<head>", `<head><script src="${tailwindUrl}"></script>`);
+    if (activeMode !== "direct") {
+        if (isStandalone) {
+            let processedHtml = html;
+
+            // Inject resize script before body close tag
+            if (processedHtml.includes("</body>")) {
+                processedHtml = processedHtml.replace("</body>", `${resizeScript}${scrollbarHideStyle}</body>`);
             } else {
-                processedHtml = `<script src="${tailwindUrl}"></script>` + processedHtml;
+                processedHtml = processedHtml + resizeScript + scrollbarHideStyle;
             }
-        }
 
-        srcDoc = processedHtml;
-    } else {
-        srcDoc = `
-            <!DOCTYPE html>
-            <html>
-                <head>
-                    ${needsTailwind ? `<script src="${tailwindUrl}"></script>` : ""}
-                    <style>
-                        *, *::before, *::after { box-sizing: border-box; }
-                        html, body {
-                            margin: 0;
-                            padding: 0;
-                            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-                            overflow: hidden !important;
-                            -ms-overflow-style: none !important;
-                            scrollbar-width: none !important;
-                        }
-                        ::-webkit-scrollbar {
-                            display: none !important;
-                        }
-                        img, iframe, video {
-                            max-width: 100%;
-                        }
-                    </style>
-                </head>
-                <body>
-                    ${html || ""}
-                    ${script ? `<script>${script}</script>` : ""}
-                    ${resizeScript}
-                </body>
-            </html>
-        `;
+            // Inject Tailwind CDN if needed and not present
+            if (needsTailwind && !processedHtml.includes("cdn.tailwindcss.com") && !processedHtml.includes("tailwind.js") && !processedHtml.includes("tailwindcss")) {
+                if (processedHtml.includes("</head>")) {
+                    processedHtml = processedHtml.replace("</head>", `<script src="${tailwindUrl}"></script></head>`);
+                } else if (processedHtml.includes("<head>")) {
+                    processedHtml = processedHtml.replace("<head>", `<head><script src="${tailwindUrl}"></script>`);
+                } else {
+                    processedHtml = `<script src="${tailwindUrl}"></script>` + processedHtml;
+                }
+            }
+
+            srcDoc = processedHtml;
+        } else {
+            srcDoc = `
+                <!DOCTYPE html>
+                <html>
+                    <head>
+                        ${needsTailwind ? `<script src="${tailwindUrl}"></script>` : ""}
+                        <style>
+                            *, *::before, *::after { box-sizing: border-box; }
+                            html, body {
+                                margin: 0;
+                                padding: 0;
+                                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+                                overflow: hidden !important;
+                                -ms-overflow-style: none !important;
+                                scrollbar-width: none !important;
+                            }
+                            ::-webkit-scrollbar {
+                                display: none !important;
+                            }
+                            img, iframe, video {
+                                max-width: 100%;
+                            }
+                        </style>
+                    </head>
+                    <body>
+                        ${html || ""}
+                        ${script ? `<script>${script}</script>` : ""}
+                        ${resizeScript}
+                    </body>
+                </html>
+            `;
+        }
     }
 
     return (
@@ -159,16 +218,29 @@ export const CustomEmbedRender = ({ content, styling }: CustomEmbedProps) => {
                 `
             }} />
             <div className="embed-wrapper">
-                <iframe
-                    srcDoc={srcDoc}
-                    scrolling="no"
-                    sandbox="allow-scripts"
-                    title="Sandboxed Custom Embed"
-                    loading="lazy"
-                    style={{ height: iframeHeight, border: "none", width: "100%" }}
-                />
+                {activeMode === "direct" ? (
+                    // Direct DOM Insertion Mode (No Iframe Sandbox, executes scripts and tags natively)
+                    <div 
+                        className="direct-embed-container w-full"
+                        dangerouslySetInnerHTML={{ __html: html }}
+                    />
+                ) : (
+                    // Iframe Sandbox or Open Mode
+                    <iframe
+                        srcDoc={srcDoc}
+                        scrolling="no"
+                        sandbox={activeMode === "sandboxed"
+                            ? "allow-scripts allow-same-origin allow-forms allow-popups allow-modals allow-presentation allow-top-navigation-by-user-activation"
+                            : undefined
+                        }
+                        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture; web-share"
+                        allowFullScreen
+                        title="Custom Embed Container"
+                        loading="lazy"
+                        style={{ height: iframeHeight, border: "none", width: "100%" }}
+                    />
+                )}
             </div>
         </section>
     );
 };
-

@@ -5,6 +5,7 @@ export type CustomEmbedProps = {
     content: {
         html: string;
         script?: string;
+        renderMode?: "sandboxed" | "direct" | "iframe-open";
     };
     styling: {
         backgroundColor: string;

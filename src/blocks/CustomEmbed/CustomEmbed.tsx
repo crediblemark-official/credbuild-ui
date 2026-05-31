@@ -17,6 +17,15 @@ export const CustomEmbed: ComponentConfig<CustomEmbedProps> = {
             objectFields: {
                 html: { type: "textarea", label: "HTML Code (Iframe, Widgets, etc.)" },
                 script: { type: "textarea", label: "JavaScript (Optional)" },
+                renderMode: {
+                    type: "select",
+                    label: "Mode Rendering",
+                    options: [
+                        { label: "Iframe Terisolasi Aman (Sandboxed)", value: "sandboxed" },
+                        { label: "Iframe Kompatibilitas Penuh (Iframe Open)", value: "iframe-open" },
+                        { label: "Sisipkan Langsung ke Halaman (Direct DOM)", value: "direct" }
+                    ]
+                },
             },
         },
         styling: {
@@ -50,6 +59,7 @@ export const CustomEmbed: ComponentConfig<CustomEmbedProps> = {
     defaultProps: {
         content: {
             html: '<div style="padding: 20px; background: #eee; border: 2px dashed #ccc; text-align: center; border-radius: 8px;"><strong>Custom Embed</strong><br/>Tempelkan kode HTML/iframe di sini.</div>',
+            renderMode: "sandboxed",
         },
         styling: {
             backgroundColor: "transparent",

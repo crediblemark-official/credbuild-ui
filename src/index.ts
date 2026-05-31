@@ -138,3 +138,13 @@ export type { SingleImageProps } from "./blocks/SingleImage/types";
 export { OrderForm } from "./blocks/OrderForm/OrderForm";
 export type { OrderFormProps } from "./blocks/OrderForm/types";
 
+export { Divider } from "./blocks/Divider/Divider";
+export type { DividerProps } from "./blocks/Divider/types";
+
+export { ListBlock } from "./blocks/ListBlock/ListBlock";
+export type { ListBlockProps } from "./blocks/ListBlock/types";
+
+export { Animation } from "./blocks/Animation/Animation";
+export type { AnimationProps } from "./blocks/Animation/types";
+
+

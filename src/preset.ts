@@ -64,6 +64,12 @@ import { SingleImage } from "./blocks/SingleImage/SingleImage";
 import type { SingleImageProps } from "./blocks/SingleImage/types";
 import { OrderForm } from "./blocks/OrderForm/OrderForm";
 import type { OrderFormProps } from "./blocks/OrderForm/types";
+import { Divider } from "./blocks/Divider/Divider";
+import type { DividerProps } from "./blocks/Divider/types";
+import { ListBlock } from "./blocks/ListBlock/ListBlock";
+import type { ListBlockProps } from "./blocks/ListBlock/types";
+import { Animation } from "./blocks/Animation/Animation";
+import type { AnimationProps } from "./blocks/Animation/types";
 
 
 export type BuildUiPresetProps = {
@@ -113,6 +119,9 @@ export type BuildUiPresetProps = {
   Button: ButtonProps;
   SingleImage: SingleImageProps;
   OrderForm: OrderFormProps;
+  Divider: DividerProps;
+  ListBlock: ListBlockProps;
+  Animation: AnimationProps;
 };
 
 export const buildUiPreset: Config<BuildUiPresetProps> = {
@@ -148,6 +157,7 @@ export const buildUiPreset: Config<BuildUiPresetProps> = {
         "Team",
         "OpeningHours",
         "InfoGrid",
+        "ListBlock",
       ],
     },
     "Marketing": {
@@ -179,6 +189,8 @@ export const buildUiPreset: Config<BuildUiPresetProps> = {
         "FeatureItem",
         "Button",
         "SingleImage",
+        "Divider",
+        "Animation",
       ],
     },
   },
@@ -230,5 +242,8 @@ export const buildUiPreset: Config<BuildUiPresetProps> = {
     Button: { ...Button, label: "Custom Button" },
     SingleImage: { ...SingleImage, label: "Gambar Single" },
     OrderForm: { ...OrderForm, label: "Form Pemesanan" },
+    Divider: { ...Divider, label: "Divider / Pembatas" },
+    ListBlock: { ...ListBlock, label: "Daftar / List Item" },
+    Animation: { ...Animation, label: "Animasi Penunjuk" },
   },
 };
