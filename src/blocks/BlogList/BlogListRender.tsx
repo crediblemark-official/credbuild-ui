@@ -12,7 +12,7 @@ export const BlogListRender = ({
 }: BlogListProps) => {
     const { title, description, limit = 3 } = content;
     const { titleColor = "#111827", descriptionColor = "#4b5563", cardTitleColor = "#111827", cardTextColor = "#4b5563", cardDateColor = "#9ca3af", linkColor = "#2563eb" } = typography;
-    const { columns = 3, backgroundColor = "#ffffff", padding = { desktop: 80, tablet: 60, mobile: 40 }, cardBackgroundColor = "#ffffff", cardBorderColor = "#f3f4f6" } = styling;
+    const { columns, backgroundColor = "#ffffff", padding = { desktop: 80, tablet: 60, mobile: 40 }, cardBackgroundColor = "#ffffff", cardBorderColor = "#f3f4f6" } = styling;
 
     const [posts, setPosts] = useState<Post[]>(initialPosts || []);
     const [loading, setLoading] = useState(!initialPosts);
@@ -50,14 +50,6 @@ export const BlogListRender = ({
 
     const displayedPosts = posts.filter(p => p.published).slice(0, limit);
 
-    const gridColsMap: Record<number, string> = {
-        1: "lg:grid-cols-1",
-        2: "lg:grid-cols-2",
-        3: "lg:grid-cols-3",
-        4: "lg:grid-cols-4",
-    };
-    const lgGridClass = gridColsMap[columns] || "lg:grid-cols-3";
-
     return (
         <section className={uniqueClass} style={{ backgroundColor: backgroundColor }}>
             <style dangerouslySetInnerHTML={{
@@ -65,14 +57,25 @@ export const BlogListRender = ({
                     .${uniqueClass} {
                         padding: ${getVal(padding, 80)}px 20px;
                     }
-                    @media (max-width: 1024px) {
+                    .${uniqueClass}-grid {
+                        display: grid;
+                        gap: 32px;
+                        grid-template-columns: repeat(${getMobileVal(columns, 1)}, minmax(0, 1fr));
+                    }
+                    @media (min-width: 768px) {
                         .${uniqueClass} {
                             padding: ${getTabletVal(padding, 60)}px 20px;
                         }
+                        .${uniqueClass}-grid {
+                            grid-template-columns: repeat(${getTabletVal(columns, 2)}, minmax(0, 1fr));
+                        }
                     }
-                    @media (max-width: 640px) {
+                    @media (min-width: 1024px) {
                         .${uniqueClass} {
-                            padding: ${getMobileVal(padding, 40)}px 20px;
+                            padding: ${getVal(padding, 80)}px 20px;
+                        }
+                        .${uniqueClass}-grid {
+                            grid-template-columns: repeat(${getVal(columns, 3)}, minmax(0, 1fr));
                         }
                     }
                 `
@@ -93,7 +96,7 @@ export const BlogListRender = ({
                         <p className="text-gray-500">No published posts found.</p>
                     </div>
                 ) : (
-                    <div className={`grid gap-8 grid-cols-1 md:grid-cols-2 ${lgGridClass}`}>
+                    <div className={`${uniqueClass}-grid`}>
                         {displayedPosts.map((post) => (
                             <BlogCard 
                                 key={post.id} 
@@ -112,4 +115,5 @@ export const BlogListRender = ({
         </section>
     );
 };
+
 

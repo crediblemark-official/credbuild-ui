@@ -1,4 +1,6 @@
 
+import { ResponsiveValue } from "../../utils";
+
 export type LogoMarqueeProps = {
     content: {
         title?: string;
@@ -9,9 +11,10 @@ export type LogoMarqueeProps = {
     styling: {
         speed?: number;
         backgroundColor?: string;
-        padding?: string;
+        padding?: ResponsiveValue;
         titleColor?: string;
-        titleSize?: string;
+        titleSize?: ResponsiveValue;
         grayscale?: boolean;
     };
 };
+

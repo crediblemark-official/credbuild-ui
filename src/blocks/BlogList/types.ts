@@ -26,7 +26,7 @@ export type BlogListProps = {
         linkColor?: string;
     };
     styling: {
-        columns?: number;
+        columns?: ResponsiveValue;
         backgroundColor?: string;
         padding?: ResponsiveValue;
         cardBackgroundColor?: string;
@@ -34,3 +34,4 @@ export type BlogListProps = {
     };
     initialPosts?: Post[];
 };
+

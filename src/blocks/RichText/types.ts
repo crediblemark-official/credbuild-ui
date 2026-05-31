@@ -1,10 +1,13 @@
+import { ResponsiveValue } from "../../utils";
+
 export type RichTextProps = {
     content: {
         html: string;
     };
     styling: {
         maxWidth?: string;
-        paddingTop?: number;
-        paddingBottom?: number;
+        paddingTop?: ResponsiveValue;
+        paddingBottom?: ResponsiveValue;
     };
 };
+

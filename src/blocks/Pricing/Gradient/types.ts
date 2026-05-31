@@ -1,3 +1,5 @@
+import { ResponsiveValue } from "@/components/credbuild/utils";
+
 export type PricingGradientItem = {
     name: string;
     price: string;
@@ -24,5 +26,7 @@ export type PricingGradientProps = {
         columnsDesktop?: number;
         columnsTablet?: number;
         columnsMobile?: number;
+        columns?: ResponsiveValue;
     };
 };
+

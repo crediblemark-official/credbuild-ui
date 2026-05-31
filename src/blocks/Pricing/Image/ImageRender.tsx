@@ -1,6 +1,7 @@
 import React, { useId } from "react";
 import { ImagePricingCard } from "./ImageCard";
 import type { PricingImageProps } from "./types";
+import { getVal, getTabletVal, getMobileVal } from "../../../utils";
 
 export const ImagePricingRender = (props: PricingImageProps) => {
     const { 
@@ -19,6 +20,7 @@ export const ImagePricingRender = (props: PricingImageProps) => {
         columnsDesktop, 
         columnsTablet, 
         columnsMobile, 
+        columns,
         gap,
         cardRadius,
         cardAspectRatio,
@@ -39,6 +41,10 @@ export const ImagePricingRender = (props: PricingImageProps) => {
         hoverLift
     };
 
+    const colDesktop = getVal(columns, columnsDesktop || 3);
+    const colTablet = getTabletVal(columns, columnsTablet || 2);
+    const colMobile = getMobileVal(columns, columnsMobile || 1);
+
     return (
         <section className={id} style={{ padding: 'clamp(50px, 8vw, 80px) 20px', backgroundColor: sectionBg || '#f8fafc', overflow: 'hidden' }} >
             <style dangerouslySetInnerHTML={{
@@ -51,19 +57,19 @@ export const ImagePricingRender = (props: PricingImageProps) => {
                 }
                 .${id} .grid-container {
                     display: grid;
-                    grid-template-columns: repeat(${columnsDesktop || 3}, 1fr);
+                    grid-template-columns: repeat(${colDesktop}, 1fr);
                     gap: var(--gap);
                 }
                 @media (max-width: 1024px) {
                     .${id} { --gap: var(--gap-tablet); }
                     .${id} .grid-container {
-                        grid-template-columns: repeat(${columnsTablet || 2}, 1fr);
+                        grid-template-columns: repeat(${colTablet}, 1fr);
                     }
                 }
                 @media (max-width: 768px) {
                     .${id} { --gap: var(--gap-mobile); }
                     .${id} .grid-container {
-                        grid-template-columns: repeat(${columnsMobile || 1}, 1fr);
+                        grid-template-columns: repeat(${colMobile}, 1fr);
                     }
                 }
             `}} />

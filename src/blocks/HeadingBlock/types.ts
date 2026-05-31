@@ -20,7 +20,7 @@ export type HeadingBlockProps = {
         lineHeight: number;
         letterSpacing: number;
         textTransform: "none" | "uppercase" | "lowercase" | "capitalize";
-        maxWidth: number;
+        maxWidth?: ResponsiveValue;
         animation: "none" | "fadeIn" | "slideUp" | "zoomIn" | "slideRight";
     };
     typography: {

@@ -3,7 +3,7 @@
 import dynamic from "next/dynamic";
 import React from "react";
 import type { ComponentConfig } from "@crediblemark/build";
-import { ColorPickerField } from "@crediblemark/build";
+import { ColorPickerField, ResponsiveSliderField } from "@crediblemark/build";
 
 import { ButtonProps } from "./types";
 
@@ -48,12 +48,36 @@ export const Button: ComponentConfig<ButtonProps> = {
                     label: "Text Color",
                     render: ({ value, onChange }) => <ColorPickerField value={value || ""} onChange={(v) => onChange(v as any)} />
                 },
-                paddingX: { type: "number", label: "Padding Horizontal (px)" },
-                paddingY: { type: "number", label: "Padding Vertical (px)" },
-                fontSize: { type: "number", label: "Font Size (px)" },
-                borderRadius: { type: "number", label: "Border Radius (px)" },
-                marginTop: { type: "number", label: "Margin Top (px)" },
-                marginBottom: { type: "number", label: "Margin Bottom (px)" },
+                paddingX: {
+                    type: "custom",
+                    label: "Padding Horizontal (px)",
+                    render: ({ value, onChange }) => <ResponsiveSliderField value={value || {}} onChange={(v) => onChange(v as any)} min={0} max={100} step={2} />
+                },
+                paddingY: {
+                    type: "custom",
+                    label: "Padding Vertical (px)",
+                    render: ({ value, onChange }) => <ResponsiveSliderField value={value || {}} onChange={(v) => onChange(v as any)} min={0} max={100} step={2} />
+                },
+                fontSize: {
+                    type: "custom",
+                    label: "Font Size (px)",
+                    render: ({ value, onChange }) => <ResponsiveSliderField value={value || {}} onChange={(v) => onChange(v as any)} min={10} max={64} step={1} />
+                },
+                borderRadius: {
+                    type: "custom",
+                    label: "Border Radius (px)",
+                    render: ({ value, onChange }) => <ResponsiveSliderField value={value || {}} onChange={(v) => onChange(v as any)} min={0} max={100} step={1} />
+                },
+                marginTop: {
+                    type: "custom",
+                    label: "Margin Top (px)",
+                    render: ({ value, onChange }) => <ResponsiveSliderField value={value || {}} onChange={(v) => onChange(v as any)} min={0} max={200} step={4} />
+                },
+                marginBottom: {
+                    type: "custom",
+                    label: "Margin Bottom (px)",
+                    render: ({ value, onChange }) => <ResponsiveSliderField value={value || {}} onChange={(v) => onChange(v as any)} min={0} max={200} step={4} />
+                },
             }
         }
     },
@@ -67,12 +91,12 @@ export const Button: ComponentConfig<ButtonProps> = {
             align: "center",
             buttonColor: "#0ea5e9",
             textColor: "#ffffff",
-            paddingX: 24,
-            paddingY: 12,
-            fontSize: 16,
-            borderRadius: 6,
-            marginTop: 16,
-            marginBottom: 16,
+            paddingX: { desktop: 24, tablet: 22, mobile: 20 },
+            paddingY: { desktop: 12, tablet: 12, mobile: 10 },
+            fontSize: { desktop: 16, tablet: 15, mobile: 14 },
+            borderRadius: { desktop: 6, tablet: 6, mobile: 6 },
+            marginTop: { desktop: 16, tablet: 16, mobile: 12 },
+            marginBottom: { desktop: 16, tablet: 16, mobile: 12 },
         }
     },
     render: (props) => <ButtonRender {...props} />,

@@ -3,7 +3,7 @@
 import dynamic from "next/dynamic";
 import React from "react";
 import type { ComponentConfig } from "@crediblemark/build";
-import { ColorPickerField } from "@crediblemark/build";
+import { ColorPickerField, ResponsiveSliderField } from "@crediblemark/build";
 import { MediaPickerField } from "@/components/credbuild/MediaPickerField";
 
 import { LogoMarqueeProps } from "./types";
@@ -77,13 +77,21 @@ export const LogoMarquee: ComponentConfig<LogoMarqueeProps> = {
                     label: "Background Color",
                     render: ({ value, onChange }) => <ColorPickerField value={value || ""} onChange={(v) => onChange(v as any)} />
                 },
-                padding: { type: "text", label: "Section Padding" },
+                padding: {
+                    type: "custom",
+                    label: "Section Padding (px)",
+                    render: ({ value, onChange }) => <ResponsiveSliderField value={value || {}} onChange={(v) => onChange(v as any)} min={0} max={200} step={4} />
+                },
                 titleColor: {
                     type: "custom",
                     label: "Title Color",
                     render: ({ value, onChange }) => <ColorPickerField value={value || ""} onChange={(v) => onChange(v as any)} />
                 },
-                titleSize: { type: "text", label: "Title Font Size" },
+                titleSize: {
+                    type: "custom",
+                    label: "Title Font Size (px)",
+                    render: ({ value, onChange }) => <ResponsiveSliderField value={value || {}} onChange={(v) => onChange(v as any)} min={12} max={96} step={2} />
+                },
                 grayscale: {
                     type: "select",
                     label: "Grayscale Effect",
@@ -111,9 +119,9 @@ export const LogoMarquee: ComponentConfig<LogoMarqueeProps> = {
         styling: {
             speed: 30,
             backgroundColor: "#ffffff",
-            padding: "60px 0",
+            padding: { desktop: 60, tablet: 40, mobile: 40 },
             titleColor: "#475569",
-            titleSize: "1.5rem",
+            titleSize: { desktop: 24, tablet: 20, mobile: 18 },
             grayscale: false,
         }
     },

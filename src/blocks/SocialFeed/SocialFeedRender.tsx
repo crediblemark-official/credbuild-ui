@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useId } from "react";
-
 import { SocialFeedProps, SocialFeedItem } from "./types";
+import { getVal, getTabletVal, getMobileVal } from "../../utils";
 
 // ─── URL Parsers ───────────────────────────────────────────────────────────────
 
@@ -93,9 +93,8 @@ function ProfileCard({ item }: { item: SocialFeedItem }) {
     const background = item.customGradient || item.customColor || cfg.gradient;
 
     return (
-        <div style={{
+        <div className="profile-card" style={{
             background: background,
-            borderRadius: "20px",
             overflow: "hidden",
             minHeight: "320px",
             display: "flex",
@@ -158,21 +157,53 @@ function ProfileCard({ item }: { item: SocialFeedItem }) {
 export const SocialFeedRender = ({ content, styling }: SocialFeedProps) => {
     const id = useId().replace(/:/g, "");
     const { title, description, items } = content;
-    const { backgroundColor, titleColor, cardBackground, columns, showCaptions } = styling;
-    const cols = parseInt(columns || "3");
+    const { backgroundColor = "#f8fafc", titleColor = "#0f172a", cardBackground = "#ffffff", columns, showCaptions, padding, cardBorderRadius } = styling;
 
     return (
-        <section style={{ backgroundColor: backgroundColor || "#f8fafc", padding: "clamp(60px, 10vw, 100px) 0" }}>
+        <section className={`sfs-${id}`}>
             <style dangerouslySetInnerHTML={{ __html: `
-                .sfg-${id}{display:grid;grid-template-columns:1fr;gap:24px;}
-                @media(min-width:640px){.sfg-${id}{grid-template-columns:repeat(${Math.min(cols,2)},1fr);}}
-                @media(min-width:1024px){.sfg-${id}{grid-template-columns:repeat(${cols},1fr);}}
+                .sfs-${id} {
+                    background-color: ${backgroundColor};
+                    padding: ${getVal(padding, 80)}px 0;
+                }
+                .sfg-${id} {
+                    display: grid;
+                    grid-template-columns: repeat(${getMobileVal(columns, 1)}, minmax(0, 1fr));
+                    gap: 24px;
+                }
+                .sfg-${id} > div, .sfg-${id} .profile-card {
+                    border-radius: ${getVal(cardBorderRadius, 20)}px;
+                }
+                @media(min-width:640px){
+                    .sfg-${id} {
+                        grid-template-columns: repeat(${getTabletVal(columns, 2)}, minmax(0, 1fr));
+                    }
+                }
+                @media(min-width:768px){
+                    .sfs-${id} {
+                        padding: ${getTabletVal(padding, 60)}px 0;
+                    }
+                    .sfg-${id} > div, .sfg-${id} .profile-card {
+                        border-radius: ${getTabletVal(cardBorderRadius, 20)}px;
+                    }
+                }
+                @media(min-width:1024px){
+                    .sfs-${id} {
+                        padding: ${getVal(padding, 80)}px 0;
+                    }
+                    .sfg-${id} {
+                        grid-template-columns: repeat(${getVal(columns, 3)}, minmax(0, 1fr));
+                    }
+                    .sfg-${id} > div, .sfg-${id} .profile-card {
+                        border-radius: ${getVal(cardBorderRadius, 20)}px;
+                    }
+                }
             ` }} />
 
             <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 clamp(16px, 5vw, 48px)" }}>
                 {(title || description) && (
                     <div style={{ textAlign: "center", marginBottom: "48px" }}>
-                        {title && <h2 style={{ fontSize: "clamp(1.75rem,5vw,3rem)", fontWeight: 900, color: titleColor || "#0f172a", letterSpacing: "-0.03em", margin: "0 0 12px" }}>{title}</h2>}
+                        {title && <h2 style={{ fontSize: "clamp(1.75rem,5vw,3rem)", fontWeight: 900, color: titleColor, letterSpacing: "-0.03em", margin: "0 0 12px" }}>{title}</h2>}
                         {description && <p style={{ fontSize: "clamp(0.95rem,2vw,1.15rem)", color: "#475569", maxWidth: "640px", margin: "0 auto", lineHeight: 1.6 }}>{description}</p>}
                     </div>
                 )}
@@ -199,7 +230,6 @@ export const SocialFeedRender = ({ content, styling }: SocialFeedProps) => {
                         return (
                             <div key={i} style={{ 
                                 background: itemBg, 
-                                borderRadius: "20px", 
                                 overflow: "hidden", 
                                 boxShadow: "0 10px 30px rgba(0,0,0,0.1)", 
                                 border: "1px solid rgba(0,0,0,0.06)", 

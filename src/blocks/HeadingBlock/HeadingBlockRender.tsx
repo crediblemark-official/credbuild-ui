@@ -51,6 +51,10 @@ export const HeadingBlockRender = (props: HeadingBlockProps | any) => {
         slideRight: "animate-in slide-in-from-left-10 fade-in duration-700",
     };
 
+    const maxWidthDesktop = getVal(maxWidth, 1200);
+    const maxWidthTablet = getTabletVal(maxWidth, 1000);
+    const maxWidthMobile = getMobileVal(maxWidth, 600);
+
     return (
         <div className={`${uniqueClass} ${animation ? (animationClasses[animation as keyof typeof animationClasses] || '') : ''}`} style={{ backgroundColor }}>
             <style dangerouslySetInnerHTML={{
@@ -74,7 +78,7 @@ export const HeadingBlockRender = (props: HeadingBlockProps | any) => {
                         line-height: ${lineHeight};
                         letter-spacing: ${letterSpacing}em;
                         text-transform: ${textTransform};
-                        max-width: ${maxWidth}px;
+                        max-width: ${maxWidthDesktop}px;
                         width: 100%;
                         margin: 0;
                     }
@@ -88,6 +92,7 @@ export const HeadingBlockRender = (props: HeadingBlockProps | any) => {
                         }
                         .${uniqueClass} .heading-element {
                             font-size: ${getTabletVal(fontSize, 40)}px;
+                            max-width: ${maxWidthTablet}px;
                         }
                     }
 
@@ -100,6 +105,7 @@ export const HeadingBlockRender = (props: HeadingBlockProps | any) => {
                         }
                         .${uniqueClass} .heading-element {
                             font-size: ${getMobileVal(fontSize, 32)}px;
+                            max-width: ${maxWidthMobile}px;
                         }
                     }
                 `

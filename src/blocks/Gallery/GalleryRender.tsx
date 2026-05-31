@@ -1,12 +1,13 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useId } from "react";
 import { GalleryItem } from "./GalleryItem";
 import type { GalleryProps } from "./types";
 import Portal from "@/components/ui/Portal";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import { getProxiedUrl } from "@/lib/media/utils";
 import Image from "next/image";
+import { getVal, getTabletVal, getMobileVal } from "../../utils";
 
 export const GalleryRender = ({
     content,
@@ -17,10 +18,11 @@ export const GalleryRender = ({
     const { title, description } = content;
     const { titleFont = 'inherit', titleColor } = typography;
     const {
-        variant, scrollMode, columnsDesktop, columnsTablet, columnsMobile,
-        backgroundColor, aspectRatio, imageFit, gap = 24, borderRadius = "16px"
+        variant, scrollMode, columnsDesktop, columnsTablet, columnsMobile, columns,
+        backgroundColor, aspectRatio, imageFit, gap, borderRadius, padding
     } = styling;
     
+    const id = "gallery-" + useId().replace(/:/g, "");
     const [items, setItems] = useState<{ title: string; url: string; description: string }[]>(initialItems || []);
     const [loading, setLoading] = useState(!initialItems);
     const [selectedIdx, setSelectedIdx] = useState<number | null>(null);
@@ -79,6 +81,22 @@ export const GalleryRender = ({
 
     const fit = imageFit || "cover";
 
+    // Backwards Compatibility mapping for columns, padding, gap, and border radius
+    const colDesktop = getVal(columns, columnsDesktop || 5);
+    const colTablet = getTabletVal(columns, columnsTablet || 3);
+    const colMobile = getMobileVal(columns, columnsMobile || 2);
+
+    const gapDesktop = getVal(gap, 24);
+    const gapTablet = getTabletVal(gap, 16);
+    const gapMobile = getMobileVal(gap, 12);
+
+    const radiusDesktop = getVal(borderRadius, 16);
+    const radiusTablet = getTabletVal(borderRadius, 16);
+    const radiusMobile = getMobileVal(borderRadius, 8);
+
+    const padDesktop = getVal(padding, 80);
+    const padTablet = getTabletVal(padding, 60);
+    const padMobile = getMobileVal(padding, 40);
 
     if (loading) return (
         <div className="py-20 text-center flex flex-col items-center justify-center gap-4">
@@ -94,13 +112,77 @@ export const GalleryRender = ({
     );
 
     return (
-        <section style={{
-            padding: 'clamp(60px, 10vw, 100px) 0',
+        <section className={id} style={{
             backgroundColor: finalBg,
             color: (variant === "red" || variant === "theme") ? "inherit" : "#1e293b",
             position: 'relative',
             overflow: 'hidden'
         }}>
+            <style dangerouslySetInnerHTML={{
+                __html: `
+                .${id} {
+                    padding-top: ${padDesktop}px;
+                    padding-bottom: ${padDesktop}px;
+                }
+                .${id} .gallery-grid {
+                    display: grid;
+                    grid-template-columns: repeat(${colMobile}, 1fr);
+                    gap: ${gapMobile}px;
+                }
+                .${id} .gallery-masonry {
+                    columns: ${colMobile};
+                    column-gap: ${gapMobile}px;
+                }
+                .${id} .gallery-masonry > div {
+                    margin-bottom: ${gapMobile}px;
+                    break-inside: avoid;
+                }
+                .${id} .gallery-grid > div, .${id} .gallery-masonry > div, .${id} .no-scrollbar > div > div {
+                    border-radius: ${radiusMobile}px !important;
+                }
+                @media (min-width: 768px) {
+                    .${id} {
+                        padding-top: ${padTablet}px;
+                        padding-bottom: ${padTablet}px;
+                    }
+                    .${id} .gallery-grid {
+                        grid-template-columns: repeat(${colTablet}, 1fr);
+                        gap: ${gapTablet}px;
+                    }
+                    .${id} .gallery-masonry {
+                        columns: ${colTablet};
+                        column-gap: ${gapTablet}px;
+                    }
+                    .${id} .gallery-masonry > div {
+                        margin-bottom: ${gapTablet}px;
+                    }
+                    .${id} .gallery-grid > div, .${id} .gallery-masonry > div, .${id} .no-scrollbar > div > div {
+                        border-radius: ${radiusTablet}px !important;
+                    }
+                }
+                @media (min-width: 1024px) {
+                    .${id} {
+                        padding-top: ${padDesktop}px;
+                        padding-bottom: ${padDesktop}px;
+                    }
+                    .${id} .gallery-grid {
+                        grid-template-columns: repeat(${colDesktop}, 1fr);
+                        gap: ${gapDesktop}px;
+                    }
+                    .${id} .gallery-masonry {
+                        columns: ${colDesktop};
+                        column-gap: ${gapDesktop}px;
+                    }
+                    .${id} .gallery-masonry > div {
+                        margin-bottom: ${gapDesktop}px;
+                    }
+                    .${id} .gallery-grid > div, .${id} .gallery-masonry > div, .${id} .no-scrollbar > div > div {
+                        border-radius: ${radiusDesktop}px !important;
+                    }
+                }
+                .${id} .no-scrollbar::-webkit-scrollbar { display: none; }
+            `}} />
+
             {/* Background Decoration */}
             {variant === "red" && (
                 <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none opacity-20">
@@ -159,7 +241,7 @@ export const GalleryRender = ({
                     }} className="no-scrollbar">
                         <div style={{
                             display: 'flex',
-                            gap: `${gap}px`,
+                            gap: `${gapMobile}px`,
                             minWidth: 'min-content',
                             margin: '0 auto',
                             justifyContent: 'center'
@@ -171,7 +253,6 @@ export const GalleryRender = ({
                                     variant={variant} 
                                     paddingBottom={paddingBottom} 
                                     fit={fit} 
-                                    borderRadius={borderRadius}
                                     isFlex 
                                     onClick={() => setSelectedIdx(i)}
                                 />
@@ -180,31 +261,6 @@ export const GalleryRender = ({
                     </div>
                 ) : (
                     <div className="gallery-container">
-                        <style dangerouslySetInnerHTML={{
-                            __html: `
-                            .gallery-grid {
-                                display: grid;
-                                grid-template-columns: repeat(${columnsMobile || 2}, 1fr);
-                                gap: ${gap}px;
-                            }
-                            .gallery-masonry {
-                                columns: ${columnsMobile || 2};
-                                column-gap: ${gap}px;
-                            }
-                            .gallery-masonry > div {
-                                margin-bottom: ${gap}px;
-                                break-inside: avoid;
-                            }
-                            @media (min-width: 768px) {
-                                .gallery-grid { grid-template-columns: repeat(${columnsTablet || 3}, 1fr); }
-                                .gallery-masonry { columns: ${columnsTablet || 3}; }
-                            }
-                            @media (min-width: 1024px) {
-                                .gallery-grid { grid-template-columns: repeat(${columnsDesktop || 5}, 1fr); }
-                                .gallery-masonry { columns: ${columnsDesktop || 5}; }
-                            }
-                            .no-scrollbar::-webkit-scrollbar { display: none; }
-                        `}} />
                         <div className={isMasonry ? "gallery-masonry" : "gallery-grid"}>
                             {items.map((item, i) => (
                                 <GalleryItem 
@@ -213,7 +269,6 @@ export const GalleryRender = ({
                                     variant={variant} 
                                     paddingBottom={isMasonry ? "0" : paddingBottom} 
                                     fit={isMasonry ? "contain" : fit} 
-                                    borderRadius={borderRadius}
                                     onClick={() => setSelectedIdx(i)}
                                 />
                             ))}
@@ -280,3 +335,4 @@ export const GalleryRender = ({
         </section>
     );
 };
+

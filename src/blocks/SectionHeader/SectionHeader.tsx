@@ -59,7 +59,11 @@ export const SectionHeader: ComponentConfig<SectionHeaderProps> = {
                     type: "custom", label: "Badge Text Color",
                     render: ({ value, onChange }) => <ColorPickerField value={value || ""} onChange={(v) => onChange(v as any)} />,
                 },
-                maxWidth: { type: "number", label: "Max Content Width (px)", min: 400, max: 1400 },
+                maxWidth: {
+                    type: "custom",
+                    label: "Max Content Width (px)",
+                    render: ({ value, onChange }) => <ResponsiveSliderField value={value || {}} onChange={(v) => onChange(v as any)} min={400} max={1400} step={20} />
+                },
                 showAccent: { 
                     type: "select", 
                     label: "Show Accent Line?", 
@@ -99,7 +103,7 @@ export const SectionHeader: ComponentConfig<SectionHeaderProps> = {
             subtitleColor: "#475569",
             badgeColor: "#3b82f6",
             badgeTextColor: "#ffffff",
-            maxWidth: 800,
+            maxWidth: { desktop: 800, tablet: 700, mobile: 500 },
             showAccent: "true",
         },
         typography: {
@@ -109,3 +113,4 @@ export const SectionHeader: ComponentConfig<SectionHeaderProps> = {
     },
     render: (props) => <SectionHeaderRender {...props} />,
 };
+

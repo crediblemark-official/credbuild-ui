@@ -21,11 +21,12 @@ export type TeamProps = {
         textColor: string;
     };
     styling: {
-        columns: number;
+        columns: ResponsiveValue;
         backgroundColor: string;
         padding: ResponsiveValue;
         cardBackgroundColor: string;
         cardBorderColor: string;
-        imageRadius: number;
+        imageRadius: ResponsiveValue;
     };
 };
+

@@ -1,6 +1,6 @@
 "use client";
 
-import { ColorPickerField, type ComponentConfig } from "@crediblemark/build";
+import { ColorPickerField, ResponsiveSliderField, type ComponentConfig } from "@crediblemark/build";
 import dynamic from "next/dynamic";
 const GalleryRender = dynamic<GalleryProps>(() => import("./GalleryRender").then(m => m.GalleryRender));
 import type { GalleryProps } from "./types";
@@ -63,10 +63,21 @@ export const Gallery: ComponentConfig<GalleryProps> = {
                         { label: "Horizontal Scroll", value: "horizontal" },
                     ],
                 },
-                columnsDesktop: { type: "number", label: "Columns (Desktop)", placeholder: "5" },
-                columnsTablet: { type: "number", label: "Columns (Tablet)", placeholder: "3" },
-                columnsMobile: { type: "number", label: "Columns (Mobile)", placeholder: "2" },
-                gap: { type: "number", label: "Space Between (px)", placeholder: "24" },
+                columns: {
+                    type: "custom",
+                    label: "Columns",
+                    render: ({ value, onChange }) => <ResponsiveSliderField value={value || {}} onChange={(v) => onChange(v as any)} min={1} max={6} step={1} />
+                },
+                gap: {
+                    type: "custom",
+                    label: "Space Between (px)",
+                    render: ({ value, onChange }) => <ResponsiveSliderField value={value || {}} onChange={(v) => onChange(v as any)} min={0} max={64} step={4} />
+                },
+                padding: {
+                    type: "custom",
+                    label: "Section Padding (px)",
+                    render: ({ value, onChange }) => <ResponsiveSliderField value={value || {}} onChange={(v) => onChange(v as any)} min={0} max={200} step={4} />
+                },
                 aspectRatio: {
                     type: "select",
                     label: "Aspect Ratio",
@@ -87,15 +98,9 @@ export const Gallery: ComponentConfig<GalleryProps> = {
                     ]
                 },
                 borderRadius: {
-                    type: "select",
-                    label: "Corner Radius",
-                    options: [
-                        { label: "None (Sharp)", value: "0px" },
-                        { label: "Small (8px)", value: "8px" },
-                        { label: "Medium (16px)", value: "16px" },
-                        { label: "Large (32px)", value: "32px" },
-                        { label: "Extra Large (48px)", value: "48px" },
-                    ]
+                    type: "custom",
+                    label: "Corner Radius (px)",
+                    render: ({ value, onChange }) => <ResponsiveSliderField value={value || {}} onChange={(v) => onChange(v as any)} min={0} max={48} step={2} />
                 },
                 backgroundColor: {
                     type: "custom",
@@ -117,11 +122,10 @@ export const Gallery: ComponentConfig<GalleryProps> = {
         styling: {
             variant: "theme",
             scrollMode: "grid",
-            columnsDesktop: 5,
-            columnsTablet: 3,
-            columnsMobile: 2,
-            gap: 24,
-            borderRadius: "16px",
+            columns: { desktop: 5, tablet: 3, mobile: 2 },
+            gap: { desktop: 24, tablet: 16, mobile: 12 },
+            borderRadius: { desktop: 16, tablet: 16, mobile: 8 },
+            padding: { desktop: 80, tablet: 60, mobile: 40 },
         }
     },
     render: (props) => <GalleryRender {...props} />,

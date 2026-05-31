@@ -2,7 +2,7 @@
 
 import dynamic from "next/dynamic";
 import type { ComponentConfig } from "@crediblemark/build";
-import { ColorPickerField } from "@crediblemark/build";
+import { ColorPickerField, ResponsiveSliderField } from "@crediblemark/build";
 import React from "react";
 import { Hash, Type } from "lucide-react";
 
@@ -86,6 +86,11 @@ export const Stats: ComponentConfig<StatsProps> = {
                     type: "custom", label: "Section Background",
                     render: ({ value, onChange }) => <ColorPickerField value={value || ""} onChange={(v) => onChange(v as any)} />
                 },
+                padding: {
+                    type: "custom",
+                    label: "Section Padding (px)",
+                    render: ({ value, onChange }) => <ResponsiveSliderField value={value || {}} onChange={(v) => onChange(v as any)} min={0} max={200} step={4} />
+                },
                 cardBgColor: {
                     type: "custom", label: "Card Background",
                     render: ({ value, onChange }) => <ColorPickerField value={value || ""} onChange={(v) => onChange(v as any)} />
@@ -93,6 +98,11 @@ export const Stats: ComponentConfig<StatsProps> = {
                 cardBorderColor: {
                     type: "custom", label: "Card Border",
                     render: ({ value, onChange }) => <ColorPickerField value={value || ""} onChange={(v) => onChange(v as any)} />
+                },
+                cardBorderRadius: {
+                    type: "custom",
+                    label: "Card Border Radius (px)",
+                    render: ({ value, onChange }) => <ResponsiveSliderField value={value || {}} onChange={(v) => onChange(v as any)} min={0} max={48} step={2} />
                 },
                 valueColor: {
                     type: "custom", label: "Default Value Color",
@@ -102,8 +112,6 @@ export const Stats: ComponentConfig<StatsProps> = {
                     type: "custom", label: "Default Label Color",
                     render: ({ value, onChange }) => <ColorPickerField value={value || ""} onChange={(v) => onChange(v as any)} />
                 },
-                paddingTop: { type: "text", label: "Padding Top", placeholder: "60px" },
-                paddingBottom: { type: "text", label: "Padding Bottom", placeholder: "60px" },
             }
         }
     },
@@ -119,12 +127,12 @@ export const Stats: ComponentConfig<StatsProps> = {
         styling: {
             mobileLayout: 'stack',
             backgroundColor: "#ffffff",
+            padding: { desktop: 60, tablet: 40, mobile: 40 },
             cardBgColor: "#fef2f2",
             cardBorderColor: "#fecaca",
+            cardBorderRadius: { desktop: 16, tablet: 16, mobile: 12 },
             valueColor: "#dc2626",
             labelColor: "#475569",
-            paddingTop: "60px",
-            paddingBottom: "60px",
         }
     },
     render: (props) => <StatsRender {...props} />,

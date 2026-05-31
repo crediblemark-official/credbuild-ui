@@ -2,7 +2,7 @@
 
 import dynamic from "next/dynamic";
 import type { ComponentConfig } from "@crediblemark/build";
-import { ColorPickerField } from "@crediblemark/build";
+import { ColorPickerField, ResponsiveSliderField } from "@crediblemark/build";
 import type { SocialFeedProps } from "./types";
 
 const SocialFeedRender = dynamic<SocialFeedProps>(() => import("./SocialFeedRender").then(m => m.SocialFeedRender));
@@ -65,6 +65,11 @@ export const SocialFeed: ComponentConfig<SocialFeedProps> = {
                     label: "Background Blok",
                     render: ({ value, onChange }) => <ColorPickerField value={value || ""} onChange={(v) => onChange(v as any)} />,
                 },
+                padding: {
+                    type: "custom",
+                    label: "Padding Section (px)",
+                    render: ({ value, onChange }) => <ResponsiveSliderField value={value || {}} onChange={(v) => onChange(v as any)} min={0} max={200} step={4} />
+                },
                 titleColor: {
                     type: "custom",
                     label: "Warna Judul",
@@ -75,14 +80,15 @@ export const SocialFeed: ComponentConfig<SocialFeedProps> = {
                     label: "Background Kartu (mode post)",
                     render: ({ value, onChange }) => <ColorPickerField value={value || ""} onChange={(v) => onChange(v as any)} />,
                 },
+                cardBorderRadius: {
+                    type: "custom",
+                    label: "Lengkungan Kartu (Radius px)",
+                    render: ({ value, onChange }) => <ResponsiveSliderField value={value || {}} onChange={(v) => onChange(v as any)} min={0} max={48} step={2} />
+                },
                 columns: {
-                    type: "select",
-                    label: "Jumlah Kolom (Desktop)",
-                    options: [
-                        { label: "1 Kolom", value: "1" },
-                        { label: "2 Kolom", value: "2" },
-                        { label: "3 Kolom", value: "3" },
-                    ],
+                    type: "custom",
+                    label: "Jumlah Kolom",
+                    render: ({ value, onChange }) => <ResponsiveSliderField value={value || {}} onChange={(v) => onChange(v as any)} min={1} max={3} step={1} />
                 },
                 showCaptions: {
                     type: "select",
@@ -128,9 +134,11 @@ export const SocialFeed: ComponentConfig<SocialFeedProps> = {
         },
         styling: {
             backgroundColor: "#f8fafc",
+            padding: { desktop: 80, tablet: 60, mobile: 40 },
             titleColor: "#0f172a",
             cardBackground: "#ffffff",
-            columns: "3",
+            cardBorderRadius: { desktop: 20, tablet: 20, mobile: 16 },
+            columns: { desktop: 3, tablet: 2, mobile: 1 },
             showCaptions: "true",
         },
     },

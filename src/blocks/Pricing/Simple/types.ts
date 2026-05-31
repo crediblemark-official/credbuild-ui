@@ -33,6 +33,8 @@ export type PricingSimpleProps = {
         columnsDesktop?: number;
         columnsTablet?: number;
         columnsMobile?: number;
+        columns?: ResponsiveValue;
         gap?: ResponsiveValue;
     };
 };
+

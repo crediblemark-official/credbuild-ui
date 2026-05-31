@@ -80,9 +80,11 @@ export const PricingImage: ComponentConfig<PricingImageProps> = {
                         { label: "Horizontal Scroll", value: "horizontal" },
                     ],
                 },
-                columnsDesktop: { type: "number", label: "Desktop Columns", placeholder: "3" },
-                columnsTablet: { type: "number", label: "Tablet Columns", placeholder: "2" },
-                columnsMobile: { type: "number", label: "Mobile Columns", placeholder: "1" },
+                columns: {
+                    type: "custom",
+                    label: "Columns",
+                    render: ({ value, onChange }) => <ResponsiveSliderField value={value || {}} onChange={(v) => onChange(v as any)} min={1} max={4} step={1} />
+                },
                 gap: {
                     type: "custom",
                     label: "Gap",
@@ -155,6 +157,7 @@ export const PricingImage: ComponentConfig<PricingImageProps> = {
             columnsDesktop: 3,
             columnsTablet: 2,
             columnsMobile: 1,
+            columns: { desktop: 3, tablet: 2, mobile: 1 },
             gap: { desktop: 28, tablet: 24, mobile: 16 },
             cardRadius: 16,
             cardAspectRatio: "2/3",

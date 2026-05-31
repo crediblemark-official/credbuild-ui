@@ -134,8 +134,9 @@ export const HeadingBlock: ComponentConfig<HeadingBlockProps> = {
                     ]
                 },
                 maxWidth: {
-                    type: "number",
+                    type: "custom",
                     label: "Max Width (px)",
+                    render: ({ value, onChange }) => <ResponsiveSliderField value={value || {}} onChange={(v) => onChange(v as any)} min={200} max={1600} step={20} />
                 },
                 animation: {
                     type: "select",
@@ -183,7 +184,7 @@ export const HeadingBlock: ComponentConfig<HeadingBlockProps> = {
             lineHeight: 1.2,
             letterSpacing: 0,
             textTransform: "none",
-            maxWidth: 1200,
+            maxWidth: { desktop: 1200, tablet: 1000, mobile: 600 },
             animation: "none",
         },
         typography: {

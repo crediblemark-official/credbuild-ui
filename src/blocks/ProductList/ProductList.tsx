@@ -2,7 +2,7 @@
 
 import dynamic from "next/dynamic";
 import type { ComponentConfig } from "@crediblemark/build";
-import { ColorPickerField } from "@crediblemark/build";
+import { ColorPickerField, ResponsiveSliderField } from "@crediblemark/build";
 const ProductListRender = dynamic<ProductListProps>(() => import("./ProductListRender").then(m => m.ProductListRender));
 import type { ProductListProps } from "./types";
 
@@ -115,7 +115,16 @@ export const ProductList: ComponentConfig<ProductListProps> = {
             type: "object",
             label: "Styling",
             objectFields: {
-                columns: { type: "number", label: "Columns", min: 1, max: 4 },
+                columns: {
+                    type: "custom",
+                    label: "Columns",
+                    render: ({ value, onChange }) => <ResponsiveSliderField value={value || {}} onChange={(v) => onChange(v as any)} min={1} max={4} step={1} />
+                },
+                padding: {
+                    type: "custom",
+                    label: "Section Padding (px)",
+                    render: ({ value, onChange }) => <ResponsiveSliderField value={value || {}} onChange={(v) => onChange(v as any)} min={0} max={200} step={4} />
+                },
                 backgroundColor: {
                     type: "custom", label: "Background Color",
                     render: ({ value, onChange }) => <ColorPickerField value={value || ""} onChange={(v) => onChange(v as any)} />
@@ -219,7 +228,8 @@ export const ProductList: ComponentConfig<ProductListProps> = {
             bodyFont: "inherit",
         },
         styling: {
-            columns: 4,
+            columns: { desktop: 4, tablet: 2, mobile: 1 },
+            padding: { desktop: 64, tablet: 48, mobile: 32 },
             backgroundColor: "#ffffff",
             cardBorderRadius: "lg",
             cardShadow: "hover-only",

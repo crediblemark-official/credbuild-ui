@@ -1,7 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { ColorPickerField, type ComponentConfig } from "@crediblemark/build";
+import { ColorPickerField, ResponsiveSliderField, type ComponentConfig } from "@crediblemark/build";
 import React from "react";
 const AccordionRender = dynamic<AccordionProps>(() => import("./AccordionRender").then(m => m.AccordionRender));
 import type { AccordionProps } from "./types";
@@ -66,6 +66,11 @@ export const Accordion: ComponentConfig<AccordionProps> = {
                     label: "Section Background",
                     render: ({ value, onChange }) => <ColorPickerField value={value || ""} onChange={(v) => onChange(v as any)} />
                 },
+                padding: {
+                    type: "custom",
+                    label: "Section Padding (px)",
+                    render: ({ value, onChange }) => <ResponsiveSliderField value={value || {}} onChange={(v) => onChange(v as any)} min={0} max={200} step={4} />
+                },
                 titleColor: {
                     type: "custom",
                     label: "Title Color",
@@ -86,6 +91,11 @@ export const Accordion: ComponentConfig<AccordionProps> = {
                     label: "Active Icon Color",
                     render: ({ value, onChange }) => <ColorPickerField value={value || ""} onChange={(v) => onChange(v as any)} />
                 },
+                borderRadius: {
+                    type: "custom",
+                    label: "Card Radius (px)",
+                    render: ({ value, onChange }) => <ResponsiveSliderField value={value || {}} onChange={(v) => onChange(v as any)} min={0} max={100} step={1} />
+                },
             }
         }
     },
@@ -105,6 +115,8 @@ export const Accordion: ComponentConfig<AccordionProps> = {
             itemBgColor: "#f8fafc",
             activeColor: "#2563eb",
             textColor: "#475569",
+            padding: { desktop: 80, tablet: 60, mobile: 40 },
+            borderRadius: { desktop: 16, tablet: 16, mobile: 12 },
         }
     },
     render: (props) => <AccordionRender {...props} />,

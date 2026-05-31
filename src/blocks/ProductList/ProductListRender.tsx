@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useId } from "react";
 import { useHasMounted } from "@/hooks/use-has-mounted";
 import { ProductCard } from "./ProductCard";
 import type { ProductListProps, Product } from "./types";
+import { getVal, getTabletVal, getMobileVal } from "../../utils";
 
 export const ProductListRender = ({ 
     content,
@@ -30,7 +31,7 @@ export const ProductListRender = ({
     } = typography;
 
     const { 
-        columns = 4, 
+        columns, 
         backgroundColor = "#ffffff",
         cardBorderRadius = "lg",
         cardShadow = "hover-only",
@@ -41,9 +42,11 @@ export const ProductListRender = ({
         cardTitleColor = "#1f2937",
         showCardBorder = true,
         imageAspectRatio = "aspect-[4/5]",
-        imageFit = "cover"
+        imageFit = "cover",
+        padding
     } = styling;
 
+    const id = "product-list-" + useId().replace(/:/g, "");
     const [products, setProducts] = useState<Product[]>(initialProducts);
     const [loading, setLoading] = useState(initialProducts.length === 0);
     const _mounted = useHasMounted();
@@ -64,16 +67,6 @@ export const ProductListRender = ({
         };
         fetchProducts();
     }, []);
-
-    const getGridColsClass = (cols: number) => {
-        switch (cols) {
-            case 1: return "lg:grid-cols-1";
-            case 2: return "lg:grid-cols-2";
-            case 3: return "lg:grid-cols-3";
-            case 4: return "lg:grid-cols-4";
-            default: return "lg:grid-cols-4";
-        }
-    };
 
     // Process filtering client-side
     let processedProducts = [...products];
@@ -104,7 +97,37 @@ export const ProductListRender = ({
     const displayedProducts = processedProducts.slice(0, limit);
 
     return (
-        <section className="py-16" style={{ backgroundColor: backgroundColor, fontFamily: bodyFont !== 'inherit' ? `"${bodyFont}", sans-serif` : 'inherit' }}>
+        <section className={id} style={{ backgroundColor: backgroundColor, fontFamily: bodyFont !== 'inherit' ? `"${bodyFont}", sans-serif` : 'inherit' }}>
+            <style dangerouslySetInnerHTML={{
+                __html: `
+                .${id} {
+                    padding-top: ${getVal(padding, 64)}px;
+                    padding-bottom: ${getVal(padding, 64)}px;
+                }
+                .${id}-grid {
+                    display: grid;
+                    gap: 24px;
+                    grid-template-columns: repeat(${getMobileVal(columns, 1)}, minmax(0, 1fr));
+                }
+                @media (min-width: 768px) {
+                    .${id} {
+                        padding-top: ${getTabletVal(padding, 48)}px;
+                        padding-bottom: ${getTabletVal(padding, 48)}px;
+                    }
+                    .${id}-grid {
+                        grid-template-columns: repeat(${getTabletVal(columns, 2)}, minmax(0, 1fr));
+                    }
+                }
+                @media (min-width: 1024px) {
+                    .${id} {
+                        padding-top: ${getVal(padding, 64)}px;
+                        padding-bottom: ${getVal(padding, 64)}px;
+                    }
+                    .${id}-grid {
+                        grid-template-columns: repeat(${getVal(columns, 4)}, minmax(0, 1fr));
+                    }
+                }
+            `}} />
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex flex-col items-center mb-12 text-center">
                     {title && (
@@ -140,7 +163,7 @@ export const ProductListRender = ({
                         <p className="text-zinc-500 dark:text-zinc-400">No products found.</p>
                     </div>
                 ) : (
-                    <div className={`grid gap-6 grid-cols-1 md:grid-cols-2 ${getGridColsClass(columns)}`}>
+                    <div className={`${id}-grid`}>
                         {displayedProducts.map((product) => (
                             <ProductCard 
                                 key={product.id} 
@@ -167,3 +190,4 @@ export const ProductListRender = ({
         </section>
     );
 };
+

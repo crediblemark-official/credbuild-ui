@@ -1,3 +1,5 @@
+import { ResponsiveValue } from "@/components/credbuild/utils";
+
 export type PricingModernItem = {
     theme: 'blue' | 'purple' | 'green' | 'orange' | 'pink' | 'red';
     name: string;
@@ -25,5 +27,7 @@ export type PricingModernProps = {
         columnsDesktop?: number;
         columnsTablet?: number;
         columnsMobile?: number;
+        columns?: ResponsiveValue;
     };
 };
+

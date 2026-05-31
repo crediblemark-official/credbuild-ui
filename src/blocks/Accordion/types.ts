@@ -1,3 +1,5 @@
+import { ResponsiveValue } from "../../utils";
+
 export type AccordionProps = {
     content: {
         title: string;
@@ -13,5 +15,7 @@ export type AccordionProps = {
         itemBgColor?: string;
         textColor?: string;
         activeColor?: string;
+        padding?: ResponsiveValue;
+        borderRadius?: ResponsiveValue;
     };
 };

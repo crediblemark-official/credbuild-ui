@@ -75,10 +75,10 @@ const TestimonialCard = ({ item, i, isHorizontal, cardClass, cardBackgroundColor
             </div>
             <div style={{ minWidth: 0 }}>
                 <div style={{ fontWeight: '700', color: authorColor, fontSize: '0.925rem', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                    {item.author}
+                     {item.author}
                 </div>
                 <div style={{ fontSize: '0.775rem', color: roleColor, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                    {item.role || 'Member'}
+                     {item.role || 'Member'}
                 </div>
             </div>
         </div>
@@ -93,7 +93,7 @@ export const TestimonialsRender = ({
     const { title, description, items = [], limit = 6 } = content;
     const { titleFont = 'inherit', quoteFont = 'inherit' } = typography;
     const {
-        scrollMode, columns: _columns, backgroundColor = '#ffffff', padding = { desktop: 80, tablet: 60, mobile: 40 },
+        scrollMode, columns, backgroundColor = '#ffffff', padding = { desktop: 80, tablet: 60, mobile: 40 },
         cardBackgroundColor = "white", cardBorderColor = "#f1f5f9",
         titleColor = "#1e293b", descriptionColor = "#475569",
         quoteColor = "#475569", authorColor = "#1e293b", roleColor = "#94a3b8"
@@ -132,14 +132,25 @@ export const TestimonialsRender = ({
                     .${uniqueClass} {
                         padding: ${getVal(padding, 80)}px 20px;
                     }
-                    @media (max-width: 1024px) {
+                    .${uniqueClass}-grid {
+                        display: grid;
+                        gap: 24px;
+                        grid-template-columns: repeat(${getMobileVal(columns, 1)}, minmax(0, 1fr));
+                    }
+                    @media (min-width: 768px) {
                         .${uniqueClass} {
                             padding: ${getTabletVal(padding, 60)}px 20px;
                         }
+                        .${uniqueClass}-grid {
+                            grid-template-columns: repeat(${getTabletVal(columns, 2)}, minmax(0, 1fr));
+                        }
                     }
-                    @media (max-width: 640px) {
+                    @media (min-width: 1024px) {
                         .${uniqueClass} {
-                            padding: ${getMobileVal(padding, 40)}px 20px;
+                            padding: ${getVal(padding, 80)}px 20px;
+                        }
+                        .${uniqueClass}-grid {
+                            grid-template-columns: repeat(${getVal(columns, 3)}, minmax(0, 1fr));
                         }
                     }
                     .${uniqueClass}-card {
@@ -211,12 +222,7 @@ export const TestimonialsRender = ({
                         </div>
                     </div>
                 ) : (
-                    <div style={{
-                        display: 'grid',
-                        gridTemplateColumns: `repeat(auto-fit, minmax(min(100%, 280px), 380px))`,
-                        justifyContent: 'center',
-                        gap: '24px',
-                    }}>
+                    <div className={`${uniqueClass}-grid`}>
                         {finalItems.map((item, i) => (
                             <TestimonialCard
                                 key={i}
@@ -238,3 +244,4 @@ export const TestimonialsRender = ({
         </section>
     );
 };
+

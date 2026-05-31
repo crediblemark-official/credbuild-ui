@@ -1,4 +1,6 @@
 
+import { ResponsiveValue } from "../../utils";
+
 export type SocialFeedItem = {
     platform: "youtube" | "instagram" | "tiktok";
     mode: "post" | "profile";
@@ -20,7 +22,10 @@ export type SocialFeedProps = {
         backgroundColor: string;
         titleColor: string;
         cardBackground: string;
-        columns: "1" | "2" | "3";
+        columns?: ResponsiveValue;
         showCaptions: "true" | "false";
+        padding?: ResponsiveValue;
+        cardBorderRadius?: ResponsiveValue;
     };
 };
+

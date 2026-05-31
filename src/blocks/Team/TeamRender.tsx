@@ -2,7 +2,7 @@
 
 import React, { useId } from "react";
 import Image from "next/image";
-import { getVal, getMobileVal } from "../../utils";
+import { getVal, getTabletVal, getMobileVal } from "../../utils";
 import { TeamProps } from "./types";
 
 export const TeamRender = ({ content, typography, styling }: TeamProps) => {
@@ -36,7 +36,7 @@ export const TeamRender = ({ content, typography, styling }: TeamProps) => {
                     }
                     .${uniqueClass} .team-grid {
                         display: grid;
-                        grid-template-columns: repeat(${columns}, 1fr);
+                        grid-template-columns: repeat(${getMobileVal(columns, 1)}, 1fr);
                         gap: 30px;
                         max-width: 1200px;
                         margin: 0 auto;
@@ -57,7 +57,7 @@ export const TeamRender = ({ content, typography, styling }: TeamProps) => {
                         width: 120px;
                         height: 120px;
                         margin: 0 auto 20px;
-                        border-radius: ${imageRadius}%;
+                        border-radius: ${getVal(imageRadius, 50)}%;
                         overflow: hidden;
                         position: relative;
                         background: #f1f5f9;
@@ -81,9 +81,27 @@ export const TeamRender = ({ content, typography, styling }: TeamProps) => {
                         line-height: 1.5;
                     }
 
-                    @media (max-width: 1024px) {
+                    @media (min-width: 768px) {
+                        .${uniqueClass} {
+                            padding: ${getTabletVal(padding, 60)}px 20px;
+                        }
                         .${uniqueClass} .team-grid {
-                            grid-template-columns: repeat(2, 1fr);
+                            grid-template-columns: repeat(${getTabletVal(columns, 2)}, 1fr);
+                        }
+                        .${uniqueClass} .member-image {
+                            border-radius: ${getTabletVal(imageRadius, 50)}%;
+                        }
+                    }
+
+                    @media (min-width: 1024px) {
+                        .${uniqueClass} {
+                            padding: ${getVal(padding, 80)}px 20px;
+                        }
+                        .${uniqueClass} .team-grid {
+                            grid-template-columns: repeat(${getVal(columns, 3)}, 1fr);
+                        }
+                        .${uniqueClass} .member-image {
+                            border-radius: ${getVal(imageRadius, 50)}%;
                         }
                     }
 
@@ -93,9 +111,6 @@ export const TeamRender = ({ content, typography, styling }: TeamProps) => {
                         }
                         .${uniqueClass} .team-header {
                             margin-bottom: 40px;
-                        }
-                        .${uniqueClass} .team-grid {
-                            grid-template-columns: 1fr;
                         }
                         .${uniqueClass} .team-title {
                             font-size: ${getMobileVal(titleSize, 32)}px;
@@ -131,3 +146,4 @@ export const TeamRender = ({ content, typography, styling }: TeamProps) => {
         </section>
     );
 };
+

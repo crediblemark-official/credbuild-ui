@@ -14,7 +14,7 @@ export type SectionHeaderProps = {
         subtitleColor: string;
         badgeColor: string;
         badgeTextColor: string;
-        maxWidth: number;
+        maxWidth: ResponsiveValue;
         showAccent: boolean | string;
     };
     typography: {
@@ -22,3 +22,4 @@ export type SectionHeaderProps = {
         subtitleSize: ResponsiveValue;
     };
 };
+

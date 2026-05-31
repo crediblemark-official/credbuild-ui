@@ -65,7 +65,11 @@ export const Team: ComponentConfig<TeamProps> = {
             type: "object",
             label: "Styling",
             objectFields: {
-                columns: { type: "number", label: "Desktop Columns", min: 1, max: 4 },
+                columns: {
+                    type: "custom",
+                    label: "Columns",
+                    render: ({ value, onChange }) => <ResponsiveSliderField value={value || {}} onChange={(v) => onChange(v as any)} min={1} max={4} step={1} />
+                },
                 backgroundColor: {
                     type: "custom", label: "Background Color",
                     render: ({ value, onChange }) => <ColorPickerField value={value || ""} onChange={(v) => onChange(v as any)} />,
@@ -82,7 +86,11 @@ export const Team: ComponentConfig<TeamProps> = {
                     type: "custom", label: "Border Color",
                     render: ({ value, onChange }) => <ColorPickerField value={value || ""} onChange={(v) => onChange(v as any)} />,
                 },
-                imageRadius: { type: "number", label: "Image Radius (%)", min: 0, max: 50 },
+                imageRadius: {
+                    type: "custom",
+                    label: "Image Radius (%)",
+                    render: ({ value, onChange }) => <ResponsiveSliderField value={value || {}} onChange={(v) => onChange(v as any)} min={0} max={50} step={1} />
+                },
             },
         },
     },
@@ -104,13 +112,14 @@ export const Team: ComponentConfig<TeamProps> = {
             textColor: "#334155",
         },
         styling: {
-            columns: 3,
+            columns: { desktop: 3, tablet: 2, mobile: 1 },
             backgroundColor: "#ffffff",
             padding: { desktop: 80, tablet: 60, mobile: 40 },
             cardBackgroundColor: "#f8fafc",
             cardBorderColor: "#e2e8f0",
-            imageRadius: 50,
+            imageRadius: { desktop: 50, tablet: 50, mobile: 50 },
         },
     },
     render: (props) => <TeamRender {...props} />,
 };
+

@@ -1,4 +1,4 @@
-import { ResponsiveValue } from "@/components/credbuild/utils";
+import { ResponsiveValue } from "../../utils";
 
 export type ButtonProps = {
     content: {
@@ -10,11 +10,11 @@ export type ButtonProps = {
         align?: "left" | "center" | "right";
         buttonColor?: string;
         textColor?: string;
-        paddingX?: number;
-        paddingY?: number;
-        fontSize?: number;
-        borderRadius?: number;
-        marginTop?: number;
-        marginBottom?: number;
+        paddingX?: ResponsiveValue;
+        paddingY?: ResponsiveValue;
+        fontSize?: ResponsiveValue;
+        borderRadius?: ResponsiveValue;
+        marginTop?: ResponsiveValue;
+        marginBottom?: ResponsiveValue;
     };
 };

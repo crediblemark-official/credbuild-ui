@@ -54,7 +54,11 @@ export const BlogList: ComponentConfig<BlogListProps> = {
             type: "object",
             label: "Styling",
             objectFields: {
-                columns: { type: "number", label: "Desktop Columns", min: 1, max: 4 },
+                columns: {
+                    type: "custom",
+                    label: "Columns",
+                    render: ({ value, onChange }) => <ResponsiveSliderField value={value || {}} onChange={(v) => onChange(v as any)} min={1} max={4} step={1} />
+                },
                 backgroundColor: {
                     type: "custom", label: "Background Color",
                     render: ({ value, onChange }) => <ColorPickerField value={value || ""} onChange={(v) => onChange(v as any)} />
@@ -89,7 +93,7 @@ export const BlogList: ComponentConfig<BlogListProps> = {
             linkColor: "#2563eb",
         },
         styling: {
-            columns: 3,
+            columns: { desktop: 3, tablet: 2, mobile: 1 },
             backgroundColor: "#ffffff",
             padding: { desktop: 80, tablet: 60, mobile: 40 },
             cardBackgroundColor: "#ffffff",
@@ -98,3 +102,4 @@ export const BlogList: ComponentConfig<BlogListProps> = {
     },
     render: (props) => <BlogListRender {...props} />,
 };
+

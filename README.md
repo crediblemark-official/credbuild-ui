@@ -148,6 +148,121 @@ export async function POST(request: Request) {
 
 ---
 
+## 🛒 Order Form Block Backend Integration Guide
+
+The `OrderForm` block interacts with two backend API endpoints to fetch products and submit new checkout orders. If these endpoints are not available on the consumer platform (e.g. they return 404 or a network error), the block gracefully deactivates itself and displays a placeholder message instead of causing JS runtime crashes.
+
+To enable the order form features in your own application, replicate the database models and the REST API endpoints detailed below:
+
+### 1. Database Schema (Prisma)
+Ensure your database has the following tables to store products, orders, and individual ordered items:
+
+```prisma
+model Product {
+  id             String      @id @default(cuid())
+  name           String
+  slug           String      @unique
+  description    String?
+  price          Decimal
+  originalPrice  Decimal?
+  currency       String?     @default("IDR")
+  images         String[]
+  stock          Int?        @default(0)
+  createdAt      DateTime    @default(now())
+  updatedAt      DateTime    @updatedAt
+  orderItems     OrderItem[]
+}
+
+model Order {
+  id                String      @id @default(cuid())
+  customerName      String
+  customerEmail     String
+  customerAddress   String
+  total             Decimal
+  status            String?     @default("pending")
+  createdAt         DateTime    @default(now())
+  paymentStatus     String?     @default("pending")
+  fulfillmentStatus String?     @default("unfulfilled")
+  paymentUrl        String?
+  paymentReference  String?
+  paymentMethod     String?
+  items             OrderItem[]
+}
+
+model OrderItem {
+  id        String  @id @default(cuid())
+  orderId   String
+  productId String
+  quantity  Int
+  price     Decimal
+  order     Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  product   Product @relation(fields: [productId], references: [id])
+}
+```
+
+### 2. REST API Endpoints Specification
+
+#### A. Fetch Active Products (`GET /api/products`)
+Used by the editor and landing pages to query the list of selectable items.
+
+- **Expected Response JSON**:
+```json
+{
+  "data": [
+    {
+      "id": "prod_12345",
+      "name": "Awesome Package",
+      "slug": "awesome-package",
+      "price": 150000,
+      "originalPrice": 250000,
+      "currency": "IDR",
+      "images": ["/uploads/product-image.png"],
+      "stock": 100
+    }
+  ]
+}
+```
+
+#### B. Place New Order (`POST /api/orders`)
+Triggered when a customer submits the checkout form.
+
+- **Expected Payload JSON**:
+```json
+{
+  "name": "Budi Sudarsono",
+  "email": "budi@example.com",
+  "phone": "081234567890",
+  "address": "Jl. Raya Utama No. 123",
+  "city": "Jakarta Pusat",
+  "zip": "10110",
+  "paymentMethod": "manual",
+  "items": [
+    {
+      "productId": "prod_12345",
+      "quantity": 2,
+      "price": 150000
+    }
+  ]
+}
+```
+
+- **Expected Response JSON**:
+```json
+{
+  "id": "order_67890",
+  "customerName": "Budi Sudarsono",
+  "customerEmail": "budi@example.com",
+  "customerAddress": "Jl. Raya Utama No. 123 (Kurir: JNE) (Catatan: Harap kirim sore)",
+  "total": "300000.00",
+  "paymentMethod": "manual",
+  "paymentUrl": "custom:{\"paymentMethod\":\"manual\",\"bankName\":\"BCA\",\"accountHolder\":\"John Doe\",\"vaNumber\":\"1234567890\",\"instructions\":\"Transfer ke rekening BCA\"}"
+}
+```
+*Note: If `paymentUrl` is returned, the client is redirected to `/checkout/payment/[orderId]`. If empty or null, the client is redirected to `/checkout/success?orderId=[orderId]`.*
+
+---
+
 ## 📜 License
 
 MIT © [Rasyiqi Crediblemark](https://github.com/crediblemark-official)
+

@@ -14,7 +14,7 @@ export type TestimonialsProps = {
     };
     styling: {
         scrollMode: "grid" | "horizontal";
-        columns?: number;
+        columns?: ResponsiveValue;
         backgroundColor?: string;
         padding?: ResponsiveValue;
         cardBackgroundColor?: string;
@@ -26,3 +26,4 @@ export type TestimonialsProps = {
         roleColor?: string;
     };
 };
+

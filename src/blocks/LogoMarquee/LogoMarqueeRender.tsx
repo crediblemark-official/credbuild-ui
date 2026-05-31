@@ -1,8 +1,9 @@
 "use client";
 
-import React from "react";
+import React, { useId } from "react";
 import Image from "next/image";
 import { LogoMarqueeProps } from "./types";
+import { getVal, getTabletVal, getMobileVal } from "../../utils";
 
 export const LogoMarqueeRender = ({
     content,
@@ -14,36 +15,62 @@ export const LogoMarqueeRender = ({
     const {
         speed = 30,
         backgroundColor = "#ffffff",
-        padding = "60px 0",
+        padding,
         titleColor = "#475569",
-        titleSize = "1.5rem",
+        titleSize,
         grayscale = false,
     } = styling;
 
+    const id = "logo-marquee-" + useId().replace(/:/g, "");
     const displayLogos = [...logos, ...logos];
 
     return (
-        <section style={{ padding: padding, overflow: "hidden", backgroundColor: backgroundColor }}>
+        <section className={id} style={{ overflow: "hidden", backgroundColor: backgroundColor }}>
             <style dangerouslySetInnerHTML={{
                 __html: `
             @keyframes scroll {
                 0% { transform: translateX(0); }
                 100% { transform: translateX(-50%); }
             }
-            .marquee {
+            .${id} .marquee {
                 display: flex;
                 width: max-content;
                 animation: scroll ${speed}s linear infinite;
             }
-            .marquee:hover {
+            .${id} .marquee:hover {
                 animation-play-state: paused;
+            }
+            .${id} {
+                padding-top: ${getVal(padding, 60)}px;
+                padding-bottom: ${getVal(padding, 60)}px;
+            }
+            .${id} h2 {
+                font-size: ${getVal(titleSize, 24)}px;
+            }
+            @media (max-width: 768px) {
+                .${id} {
+                    padding-top: ${getTabletVal(padding, 40)}px;
+                    padding-bottom: ${getTabletVal(padding, 40)}px;
+                }
+                .${id} h2 {
+                    font-size: ${getTabletVal(titleSize, 20)}px;
+                }
+            }
+            @media (max-width: 640px) {
+                .${id} {
+                    padding-top: ${getMobileVal(padding, 40)}px;
+                    padding-bottom: ${getMobileVal(padding, 40)}px;
+                }
+                .${id} h2 {
+                    font-size: ${getMobileVal(titleSize, 18)}px;
+                }
             }
         `
             }} />
 
             {title && (
                 <div style={{ maxWidth: "1200px", margin: "0 auto 40px", padding: "0 20px", textAlign: "center" }}>
-                    <h2 style={{ fontSize: titleSize, fontWeight: "600", color: titleColor }}>{title}</h2>
+                    <h2 style={{ fontWeight: "600", color: titleColor }}>{title}</h2>
                 </div>
             )}
 
@@ -110,3 +137,4 @@ export const LogoMarqueeRender = ({
         </section>
     );
 };
+

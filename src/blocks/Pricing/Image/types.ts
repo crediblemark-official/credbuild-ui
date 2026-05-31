@@ -23,6 +23,7 @@ export type PricingImageProps = {
         columnsDesktop?: number;
         columnsTablet?: number;
         columnsMobile?: number;
+        columns?: ResponsiveValue;
         gap?: ResponsiveValue;
         cardRadius?: number;
         cardAspectRatio?: string;

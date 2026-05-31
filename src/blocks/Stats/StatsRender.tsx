@@ -2,6 +2,7 @@
 
 import React, { useId } from "react";
 import { StatsProps } from "./types";
+import { getVal, getTabletVal, getMobileVal } from "../../utils";
 
 export const StatsRender = ({
     content,
@@ -17,8 +18,8 @@ export const StatsRender = ({
         cardBorderColor = '#fecaca',
         valueColor = '#dc2626',
         labelColor = '#475569',
-        paddingTop = '60px',
-        paddingBottom = '60px'
+        padding,
+        cardBorderRadius
     } = styling;
 
     const id = "stats-" + useId().replace(/:/g, "");
@@ -28,8 +29,8 @@ export const StatsRender = ({
             <style dangerouslySetInnerHTML={{
                 __html: `
                 .${id} {
-                    padding-top: ${paddingTop};
-                    padding-bottom: ${paddingBottom};
+                    padding-top: ${getVal(padding, 60)}px;
+                    padding-bottom: ${getVal(padding, 60)}px;
                     background-color: ${backgroundColor};
                     padding-left: 20px;
                     padding-right: 20px;
@@ -47,7 +48,7 @@ export const StatsRender = ({
                     text-align: center;
                     padding: 32px 20px;
                     background-color: ${cardBgColor};
-                    border-radius: 16px;
+                    border-radius: ${getVal(cardBorderRadius, 16)}px;
                     border: 2px solid ${cardBorderColor};
                     transition: transform 0.3s, box-shadow 0.3s;
                     cursor: default;
@@ -76,10 +77,13 @@ export const StatsRender = ({
 
                 @media (max-width: 768px) {
                     .${id} {
-                        padding-top: 40px;
-                        padding-bottom: 40px;
+                        padding-top: ${getTabletVal(padding, 40)}px;
+                        padding-bottom: ${getTabletVal(padding, 40)}px;
                         padding-left: 0;
                         padding-right: 0;
+                    }
+                    .${id} .card {
+                        border-radius: ${getTabletVal(cardBorderRadius, 12)}px;
                     }
                     .${id} .container {
                        padding-left: 20px;
@@ -147,3 +151,4 @@ export const StatsRender = ({
         </section>
     );
 };
+

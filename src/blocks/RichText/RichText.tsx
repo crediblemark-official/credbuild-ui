@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 
 import React from "react";
 import type { ComponentConfig } from "@crediblemark/build";
+import { ResponsiveSliderField } from "@crediblemark/build";
 import { TiptapField } from "./TiptapField";
 const RichTextRender = dynamic<RichTextProps>(() => import("./RichTextRender").then(m => m.RichTextRender));
 import type { RichTextProps } from "./types";
@@ -38,8 +39,16 @@ export const RichText: ComponentConfig<RichTextProps> = {
                         { label: "Full", value: "max-w-full" },
                     ],
                 },
-                paddingTop: { type: "number", label: "Padding Top" },
-                paddingBottom: { type: "number", label: "Padding Bottom" },
+                paddingTop: {
+                    type: "custom",
+                    label: "Padding Top (px)",
+                    render: ({ value, onChange }) => <ResponsiveSliderField value={value || {}} onChange={(v) => onChange(v as any)} min={0} max={200} step={4} />
+                },
+                paddingBottom: {
+                    type: "custom",
+                    label: "Padding Bottom (px)",
+                    render: ({ value, onChange }) => <ResponsiveSliderField value={value || {}} onChange={(v) => onChange(v as any)} min={0} max={200} step={4} />
+                },
             }
         }
     },
@@ -49,8 +58,8 @@ export const RichText: ComponentConfig<RichTextProps> = {
         },
         styling: {
             maxWidth: "max-w-prose",
-            paddingTop: 64,
-            paddingBottom: 64,
+            paddingTop: { desktop: 64, tablet: 48, mobile: 32 },
+            paddingBottom: { desktop: 64, tablet: 48, mobile: 32 },
         }
     },
     render: (props) => <RichTextRender {...props} />,

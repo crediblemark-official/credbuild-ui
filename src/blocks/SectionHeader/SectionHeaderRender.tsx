@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useId } from "react";
-import { getVal, getMobileVal } from "../../utils";
+import { getVal, getTabletVal, getMobileVal } from "../../utils";
 import type { SectionHeaderProps } from "./types";
 
 export const SectionHeaderRender = ({ content, styling, typography }: SectionHeaderProps) => {
@@ -36,7 +36,7 @@ export const SectionHeaderRender = ({ content, styling, typography }: SectionHea
                         text-align: ${textAlignMap[alignment]};
                     }
                     .${uniqueClass} .header-wrapper {
-                        max-width: ${maxWidth}px;
+                        max-width: ${getVal(maxWidth, 800)}px;
                         width: 100%;
                     }
                     .${uniqueClass} .badge {
@@ -75,9 +75,21 @@ export const SectionHeaderRender = ({ content, styling, typography }: SectionHea
                         opacity: 0.8;
                     }
 
+                    @media (max-width: 1024px) {
+                        .${uniqueClass} {
+                            padding: ${getTabletVal(padding, 60)}px 24px;
+                        }
+                        .${uniqueClass} .header-wrapper {
+                            max-width: ${getTabletVal(maxWidth, 700)}px;
+                        }
+                    }
+
                     @media (max-width: 640px) {
                         .${uniqueClass} {
                             padding: ${getMobileVal(padding, 40)}px 20px;
+                        }
+                        .${uniqueClass} .header-wrapper {
+                            max-width: ${getMobileVal(maxWidth, 500)}px;
                         }
                         .${uniqueClass} .title {
                             font-size: ${getMobileVal(titleSize, 32)}px;
@@ -99,3 +111,4 @@ export const SectionHeaderRender = ({ content, styling, typography }: SectionHea
         </section>
     );
 };
+

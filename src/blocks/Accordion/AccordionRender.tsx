@@ -1,5 +1,8 @@
-import { useId } from "react";
-import type { AccordionProps } from "@/components/credbuild/Accordion/types";
+"use client";
+
+import React, { useId } from "react";
+import type { AccordionProps } from "./types";
+import { getVal, getTabletVal, getMobileVal } from "../../utils";
 
 export const AccordionRender = ({
     content,
@@ -8,12 +11,12 @@ export const AccordionRender = ({
 }: AccordionProps) => {
     const { title, items } = content;
     const { titleFont = 'inherit', bodyFont = 'inherit' } = typography;
-    const { backgroundColor, titleColor, itemBgColor, textColor, activeColor } = styling;
+    const { backgroundColor, titleColor, itemBgColor, textColor, activeColor, padding, borderRadius } = styling;
     const id = "accordion-" + useId().replace(/:/g, "");
     const finalActiveColor = activeColor || "#2563eb";
 
     return (
-        <section className={id} style={{ padding: 'clamp(50px, 8vw, 80px) 20px', backgroundColor: backgroundColor || '#ffffff' }}>
+        <section className={id} style={{ padding: `${getVal(padding, 80)}px 20px`, backgroundColor: backgroundColor || '#ffffff' }}>
             <style dangerouslySetInnerHTML={{
                 __html: `
                 .${id} details > summary {
@@ -32,6 +35,25 @@ export const AccordionRender = ({
                 @keyframes slideDown {
                     0% { opacity: 0; transform: translateY(-10px); }
                     100% { opacity: 1; transform: translateY(0); }
+                }
+                .${id} details {
+                    border-radius: ${getVal(borderRadius, 16)}px;
+                }
+                @media (max-width: 1024px) {
+                    .${id} {
+                        padding: ${getTabletVal(padding, 60)}px 20px;
+                    }
+                    .${id} details {
+                        border-radius: ${getTabletVal(borderRadius, 16)}px;
+                    }
+                }
+                @media (max-width: 640px) {
+                    .${id} {
+                        padding: ${getMobileVal(padding, 40)}px 16px;
+                    }
+                    .${id} details {
+                        border-radius: ${getMobileVal(borderRadius, 12)}px;
+                    }
                 }
             `}} />
 
@@ -54,7 +76,6 @@ export const AccordionRender = ({
                             key={i}
                             style={{
                                 backgroundColor: itemBgColor || '#f8fafc',
-                                borderRadius: '16px',
                                 overflow: 'hidden',
                                 fontFamily: bodyFont !== 'inherit' ? `"${bodyFont}", sans-serif` : 'inherit',
                                 boxShadow: '0 4px 6px rgba(0,0,0,0.02)',

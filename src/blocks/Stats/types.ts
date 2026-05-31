@@ -1,4 +1,6 @@
 
+import { ResponsiveValue } from "../../utils";
+
 export type StatsProps = {
     content: {
         items: { value: string; label: string; valueColor?: string; labelColor?: string }[];
@@ -14,7 +16,8 @@ export type StatsProps = {
         cardBorderColor: string;
         valueColor: string;
         labelColor: string;
-        paddingTop: string;
-        paddingBottom: string;
+        padding?: ResponsiveValue;
+        cardBorderRadius?: ResponsiveValue;
     };
 };
+

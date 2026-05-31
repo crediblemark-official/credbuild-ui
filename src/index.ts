@@ -131,3 +131,10 @@ export type { SocialFeedProps } from "./blocks/SocialFeed/types";
 
 export { Button } from "./blocks/Button/Button";
 export type { ButtonProps } from "./blocks/Button/types";
+
+export { SingleImage } from "./blocks/SingleImage/SingleImage";
+export type { SingleImageProps } from "./blocks/SingleImage/types";
+
+export { OrderForm } from "./blocks/OrderForm/OrderForm";
+export type { OrderFormProps } from "./blocks/OrderForm/types";
+

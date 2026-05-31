@@ -60,6 +60,11 @@ import { SocialFeed } from "./blocks/SocialFeed/SocialFeed";
 import type { SocialFeedProps } from "./blocks/SocialFeed/types";
 import { Button } from "./blocks/Button/Button";
 import type { ButtonProps } from "./blocks/Button/types";
+import { SingleImage } from "./blocks/SingleImage/SingleImage";
+import type { SingleImageProps } from "./blocks/SingleImage/types";
+import { OrderForm } from "./blocks/OrderForm/OrderForm";
+import type { OrderFormProps } from "./blocks/OrderForm/types";
+
 
 export type BuildUiPresetProps = {
   HeadingBlock: HeadingBlockProps;
@@ -106,6 +111,8 @@ export type BuildUiPresetProps = {
   InfoGrid: InfoGridProps;
   SocialFeed: SocialFeedProps;
   Button: ButtonProps;
+  SingleImage: SingleImageProps;
+  OrderForm: OrderFormProps;
 };
 
 export const buildUiPreset: Config<BuildUiPresetProps> = {
@@ -156,6 +163,7 @@ export const buildUiPreset: Config<BuildUiPresetProps> = {
         "VideoEmbed",
         "ComparisonTable",
         "SocialFeed",
+        "OrderForm",
       ],
     },
     "Layout": {
@@ -170,6 +178,7 @@ export const buildUiPreset: Config<BuildUiPresetProps> = {
         "CustomEmbed",
         "FeatureItem",
         "Button",
+        "SingleImage",
       ],
     },
   },
@@ -219,5 +228,7 @@ export const buildUiPreset: Config<BuildUiPresetProps> = {
     InfoGrid: { ...InfoGrid, label: "Info Grid (Data Perusahaan)" },
     SocialFeed: { ...SocialFeed, label: "Social Media Feed" },
     Button: { ...Button, label: "Custom Button" },
+    SingleImage: { ...SingleImage, label: "Gambar Single" },
+    OrderForm: { ...OrderForm, label: "Form Pemesanan" },
   },
 };

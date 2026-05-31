@@ -7,8 +7,6 @@ import { ColorPickerField, ResponsiveSliderField } from "@crediblemark/build";
 
 import { TestimonialsProps } from "./types";
 
-
-
 const TestimonialsRender = dynamic<TestimonialsProps>(() => import("./TestimonialsRender").then(m => m.TestimonialsRender));
 export const Testimonials: ComponentConfig<TestimonialsProps> = {
     label: "Testimonials",
@@ -64,7 +62,11 @@ export const Testimonials: ComponentConfig<TestimonialsProps> = {
                         { label: "Horizontal Scroll", value: "horizontal" },
                     ],
                 },
-                columns: { type: "number", label: "Desktop Columns", placeholder: "3" },
+                columns: {
+                    type: "custom",
+                    label: "Columns",
+                    render: ({ value, onChange }) => <ResponsiveSliderField value={value || {}} onChange={(v) => onChange(v as any)} min={1} max={4} step={1} />
+                },
                 backgroundColor: {
                     type: "custom",
                     label: "Background Color",
@@ -130,7 +132,7 @@ export const Testimonials: ComponentConfig<TestimonialsProps> = {
         },
         styling: {
             scrollMode: "grid",
-            columns: 3,
+            columns: { desktop: 3, tablet: 2, mobile: 1 },
             backgroundColor: "#ffffff",
             padding: { desktop: 80, tablet: 60, mobile: 40 },
             cardBackgroundColor: "white",
@@ -144,3 +146,4 @@ export const Testimonials: ComponentConfig<TestimonialsProps> = {
     },
     render: (props) => <TestimonialsRender {...props} />,
 };
+
