@@ -58,6 +58,8 @@ import { FeatureItem, type FeatureItemProps } from "./blocks/FeatureItem/Feature
 import { InfoGrid, type InfoGridProps } from "./blocks/InfoGrid/InfoGrid";
 import { SocialFeed } from "./blocks/SocialFeed/SocialFeed";
 import type { SocialFeedProps } from "./blocks/SocialFeed/types";
+import { Button } from "./blocks/Button/Button";
+import type { ButtonProps } from "./blocks/Button/types";
 
 export type BuildUiPresetProps = {
   HeadingBlock: HeadingBlockProps;
@@ -103,6 +105,7 @@ export type BuildUiPresetProps = {
   FeatureItem: FeatureItemProps;
   InfoGrid: InfoGridProps;
   SocialFeed: SocialFeedProps;
+  Button: ButtonProps;
 };
 
 export const buildUiPreset: Config<BuildUiPresetProps> = {
@@ -166,6 +169,7 @@ export const buildUiPreset: Config<BuildUiPresetProps> = {
         "RichText",
         "CustomEmbed",
         "FeatureItem",
+        "Button",
       ],
     },
   },
@@ -214,5 +218,6 @@ export const buildUiPreset: Config<BuildUiPresetProps> = {
     FeatureItem: { ...FeatureItem, label: "Feature / Info Box" },
     InfoGrid: { ...InfoGrid, label: "Info Grid (Data Perusahaan)" },
     SocialFeed: { ...SocialFeed, label: "Social Media Feed" },
+    Button: { ...Button, label: "Custom Button" },
   },
 };

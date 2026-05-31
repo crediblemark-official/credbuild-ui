@@ -128,3 +128,6 @@ export type { InfoGridProps } from "./blocks/InfoGrid/InfoGrid";
 
 export { SocialFeed } from "./blocks/SocialFeed/SocialFeed";
 export type { SocialFeedProps } from "./blocks/SocialFeed/types";
+
+export { Button } from "./blocks/Button/Button";
+export type { ButtonProps } from "./blocks/Button/types";
