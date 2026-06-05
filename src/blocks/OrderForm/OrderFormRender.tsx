@@ -131,7 +131,8 @@ export const OrderFormRender = ({ content, styling }: OrderFormProps) => {
     // Price helpers
     const basePrice = Number(product?.price || 0);
     const originalPrice = Number(product?.originalPrice || 0);
-    const currency = product?.currency || "IDR";
+    // Prioritaskan mata uang dari setelan pembayaran toko, fallback ke mata uang produk
+    const currency = paymentSettings?.currency || product?.currency || "IDR";
 
     const formatPrice = (amount: number) => {
         return amount.toLocaleString("id-ID", {
