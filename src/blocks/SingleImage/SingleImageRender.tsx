@@ -140,7 +140,7 @@ export const SingleImageRender = ({
                 <div className="image-wrapper">
                     {linkUrl ? (
                         <a
-                            href={linkUrl}
+                            href={/^(https?:|mailto:|tel:|\/|#)/i.test(linkUrl?.trim() ?? '') ? linkUrl : '#'}
                             target={openInNewTab ? "_blank" : "_self"}
                             rel={openInNewTab ? "noopener noreferrer" : undefined}
                             style={{ display: "block", borderRadius: "inherit" }}

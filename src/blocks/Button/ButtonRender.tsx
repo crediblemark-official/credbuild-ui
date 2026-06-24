@@ -4,6 +4,14 @@ import React, { useId } from "react";
 import { ButtonProps } from "./types";
 import { getVal, getTabletVal, getMobileVal } from "../../utils";
 
+// Sanitasi URL agar tidak rentan XSS via javascript: protocol
+const safeHref = (url: string): string => {
+    if (!url || typeof url !== 'string') return '#';
+    const trimmed = url.trim();
+    if (/^(https?:|mailto:|tel:|/|#)/i.test(trimmed)) return trimmed;
+    return '#';
+};
+
 export const ButtonRender = ({
     content,
     styling
@@ -71,7 +79,7 @@ export const ButtonRender = ({
                 }
             `}} />
             <a
-                href={link}
+                href={safeHref(link)}
                 data-pixel-event={pixelEvent || undefined}
             >
                 {text}

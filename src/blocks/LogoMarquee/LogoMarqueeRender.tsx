@@ -22,7 +22,14 @@ export const LogoMarqueeRender = ({
     } = styling;
 
     const id = "logo-marquee-" + useId().replace(/:/g, "");
-    const displayLogos = [...logos, ...logos];
+
+    // Guard: jika tidak ada logo valid, jangan render apapun
+    const validLogos = logos?.filter(
+        (logo) => logo && logo.src && typeof logo.src === "string" && logo.src.trim() !== ""
+    ) ?? [];
+    if (validLogos.length === 0) return null;
+
+    const displayLogos = [...validLogos, ...validLogos];
 
     return (
         <section className={id} style={{ overflow: "hidden", backgroundColor: backgroundColor }}>
@@ -77,11 +84,6 @@ export const LogoMarqueeRender = ({
             <div style={{ overflow: "hidden", width: "100%", maskImage: "linear-gradient(to right, transparent, black 10%, black 90%, transparent)" }}>
                 <div className="marquee">
                     {displayLogos.map((logo, index) => {
-                        // Defensive checks: ignore empty logos
-                        if (!logo || !logo.src || typeof logo.src !== "string" || logo.src.trim() === "") {
-                            return null;
-                        }
-
                         const src = logo.src;
                         // Accessibility (A11y) & SEO: Ensure alt is never empty or missing
                         const alt = logo.alt && typeof logo.alt === "string" && logo.alt.trim() !== "" 

@@ -10,7 +10,7 @@ export const BoxPricingRender = ({
 }: PricingBoxProps) => {
     const { title, description, items } = content;
     const { titleFont = 'inherit', bodyFont = 'inherit' } = typography;
-    const { columnsDesktop, columnsTablet, columnsMobile, columns, mainColor } = styling;
+    const { columnsDesktop, columnsTablet, columnsMobile, columns, mainColor, padding, backgroundColor } = styling;
 
     const id = "box-pricing-" + useId().replace(/:/g, "");
     const primaryColor = mainColor || '#2563eb';
@@ -20,20 +20,29 @@ export const BoxPricingRender = ({
     const colMobile = getMobileVal(columns, columnsMobile || 1);
 
     return (
-        <section className={id} style={{ padding: '80px 20px', backgroundColor: '#f9fafb' }}>
+        <section className={id} style={{ backgroundColor: backgroundColor || '#f9fafb' }}>
             <style dangerouslySetInnerHTML={{
                 __html: `
+                .${id} {
+                    padding: ${getVal(padding, 80)}px 20px;
+                }
                 .${id} .grid-container {
                     display: grid;
                     grid-template-columns: repeat(${colDesktop}, 1fr);
                     gap: 30px;
                 }
                 @media (max-width: 1024px) {
+                    .${id} {
+                        padding: ${getTabletVal(padding, 60)}px 20px;
+                    }
                     .${id} .grid-container {
                         grid-template-columns: repeat(${colTablet}, 1fr);
                     }
                 }
                 @media (max-width: 768px) {
+                    .${id} {
+                        padding: ${getMobileVal(padding, 40)}px 20px;
+                    }
                     .${id} .grid-container {
                         grid-template-columns: repeat(${colMobile}, 1fr);
                     }

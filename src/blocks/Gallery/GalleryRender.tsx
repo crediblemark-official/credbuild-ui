@@ -281,10 +281,13 @@ export const GalleryRender = ({
             {selectedIdx !== null && (
                 <Portal>
                     <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/95 backdrop-blur-xl animate-in fade-in duration-300">
+                        {/* Background Click to Close — letakkan pertama agar tombol di atasnya */}
+                        <div className="absolute inset-0 z-[10000]" onClick={() => setSelectedIdx(null)}></div>
+
                         {/* Close Button */}
                         <button 
                             onClick={() => setSelectedIdx(null)}
-                            className="absolute top-6 right-6 w-12 h-12 flex items-center justify-center bg-white/10 hover:bg-white/20 text-white rounded-full transition-colors z-50"
+                            className="absolute top-6 right-6 w-12 h-12 flex items-center justify-center bg-white/10 hover:bg-white/20 text-white rounded-full transition-colors z-[10002]"
                         >
                             <X size={24} />
                         </button>
@@ -292,19 +295,19 @@ export const GalleryRender = ({
                         {/* Navigation */}
                         <button 
                             onClick={(e) => { e.stopPropagation(); prevImage(); }}
-                            className="absolute left-6 w-14 h-14 hidden md:flex items-center justify-center bg-white/5 hover:bg-white/10 text-white rounded-full transition-colors z-50"
+                            className="absolute left-6 w-14 h-14 hidden md:flex items-center justify-center bg-white/5 hover:bg-white/10 text-white rounded-full transition-colors z-[10002]"
                         >
                             <ChevronLeft size={32} />
                         </button>
                         <button 
                             onClick={(e) => { e.stopPropagation(); nextImage(); }}
-                            className="absolute right-6 w-14 h-14 hidden md:flex items-center justify-center bg-white/5 hover:bg-white/10 text-white rounded-full transition-colors z-50"
+                            className="absolute right-6 w-14 h-14 hidden md:flex items-center justify-center bg-white/5 hover:bg-white/10 text-white rounded-full transition-colors z-[10002]"
                         >
                             <ChevronRight size={32} />
                         </button>
 
-                        {/* Main Image */}
-                        <div className="relative w-[90vw] h-[80vh] flex flex-col items-center justify-center" onClick={(e) => e.stopPropagation()}>
+                        {/* Main Image — z di atas backdrop tapi di bawah tombol */}
+                        <div className="relative w-[90vw] h-[80vh] flex flex-col items-center justify-center z-[10001]" onClick={(e) => e.stopPropagation()}>
                             <div className="relative w-full h-full">
                                 <Image
                                     src={getProxiedUrl(items[selectedIdx].url)}
@@ -326,11 +329,9 @@ export const GalleryRender = ({
                                 </div>
                             </div>
                         </div>
-                        
-                        {/* Background Click to Close */}
-                        <div className="absolute inset-0 z-40" onClick={() => setSelectedIdx(null)}></div>
                     </div>
                 </Portal>
+
             )}
         </section>
     );

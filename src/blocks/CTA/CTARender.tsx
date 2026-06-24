@@ -4,6 +4,14 @@ import React, { useId } from "react";
 import { CTAProps } from "./types";
 import { getVal, getTabletVal, getMobileVal } from "@/components/credbuild/utils";
 
+// Sanitasi URL agar tidak rentan XSS via javascript: protocol
+const safeHref = (url: string): string => {
+    if (!url || typeof url !== 'string') return '#';
+    const trimmed = url.trim();
+    if (/^(https?:|mailto:|tel:|\/|#)/i.test(trimmed)) return trimmed;
+    return '#';
+};
+
 export const CTARender = ({
     content,
     typography,
@@ -106,7 +114,7 @@ export const CTARender = ({
                     {subtitle}
                 </p>
                 <a
-                    href={buttonLink}
+                    href={safeHref(buttonLink)}
                     style={{
                         display: 'inline-block',
                         backgroundColor: buttonColor,
