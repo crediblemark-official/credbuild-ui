@@ -61,7 +61,7 @@ const TestimonialCard = ({ item, i, isHorizontal, cardClass, cardBackgroundColor
                 width: '40px',
                 height: '40px',
                 borderRadius: '50%',
-                background: 'linear-gradient(135deg, #dc2626 0%, #991b1b 100%)',
+                background: 'linear-gradient(135deg, #475569 0%, #1e293b 100%)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',

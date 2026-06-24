@@ -25,7 +25,7 @@
         "typescript": "^5.9.3",
       },
       "peerDependencies": {
-        "@crediblemark/build": "^0.25.4",
+        "@crediblemark/build": "^0.25.5",
         "react": "^19.2.6",
       },
     },
