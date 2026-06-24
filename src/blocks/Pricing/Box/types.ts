@@ -27,6 +27,8 @@ export type PricingBoxProps = {
         columnsTablet?: number;
         columnsMobile?: number;
         columns?: ResponsiveValue;
+        padding?: ResponsiveValue;
+        backgroundColor?: string;
     };
 };
 

@@ -28,6 +28,8 @@ export type PricingModernProps = {
         columnsTablet?: number;
         columnsMobile?: number;
         columns?: ResponsiveValue;
+        padding?: ResponsiveValue;
+        backgroundColor?: string;
     };
 };
 

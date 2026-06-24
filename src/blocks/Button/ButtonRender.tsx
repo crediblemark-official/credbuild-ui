@@ -7,8 +7,9 @@ import { getVal, getTabletVal, getMobileVal } from "../../utils";
 // Sanitasi URL agar tidak rentan XSS via javascript: protocol
 const safeHref = (url: string): string => {
     if (!url || typeof url !== 'string') return '#';
-    const trimmed = url.trim();
-    if (/^(https?:|mailto:|tel:|/|#)/i.test(trimmed)) return trimmed;
+    const trimmed = url.trim().toLowerCase();
+    const allowed = ['https://', 'http://', 'mailto:', 'tel:', '/', '#'];
+    if (allowed.some(prefix => trimmed.startsWith(prefix))) return url.trim();
     return '#';
 };
 
