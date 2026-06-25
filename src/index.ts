@@ -147,7 +147,7 @@ export type { ListBlockProps } from "./blocks/ListBlock/types";
 export { Animation } from "./blocks/Animation/Animation";
 export type { AnimationProps } from "./blocks/Animation/types";
 
-export { MetaPixel } from "./blocks/MetaPixel/MetaPixel";
-export type { MetaPixelProps } from "./blocks/MetaPixel/types";
+export { PixelTracker } from "./blocks/PixelTracker/PixelTracker";
+export type { PixelTrackerProps } from "./blocks/PixelTracker/types";
 
 
