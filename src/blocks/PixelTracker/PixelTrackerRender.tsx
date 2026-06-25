@@ -19,14 +19,16 @@ export const PixelTrackerRender = ({ content }: PixelTrackerProps) => {
                 if (w.fbq) return;
                 
                 const n = w.fbq = function (...args: any[]) {
-                    n.callMethod ? n.callMethod.apply(n, args) : n.queue.push(args);
+                    const fn = n as any;
+                    fn.callMethod ? fn.callMethod.apply(fn, args) : fn.queue.push(args);
                 };
                 
-                if (!w._fbq) w._fbq = n;
-                n.push = n;
-                n.loaded = true;
-                n.version = '2.0';
-                n.queue = [];
+                const fn = n as any;
+                if (!w._fbq) w._fbq = fn;
+                fn.push = fn;
+                fn.loaded = true;
+                fn.version = '2.0';
+                fn.queue = [];
                 
                 const t = document.createElement('script');
                 t.async = true;
