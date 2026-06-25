@@ -70,6 +70,8 @@ import { ListBlock } from "./blocks/ListBlock/ListBlock";
 import type { ListBlockProps } from "./blocks/ListBlock/types";
 import { Animation } from "./blocks/Animation/Animation";
 import type { AnimationProps } from "./blocks/Animation/types";
+import { MetaPixel } from "./blocks/MetaPixel/MetaPixel";
+import type { MetaPixelProps } from "./blocks/MetaPixel/types";
 
 
 export type BuildUiPresetProps = {
@@ -122,6 +124,7 @@ export type BuildUiPresetProps = {
   Divider: DividerProps;
   ListBlock: ListBlockProps;
   Animation: AnimationProps;
+  MetaPixel: MetaPixelProps;
 };
 
 export const buildUiPreset: Config<BuildUiPresetProps> = {
@@ -191,6 +194,7 @@ export const buildUiPreset: Config<BuildUiPresetProps> = {
         "SingleImage",
         "Divider",
         "Animation",
+        "MetaPixel",
       ],
     },
   },
@@ -245,5 +249,6 @@ export const buildUiPreset: Config<BuildUiPresetProps> = {
     Divider: { ...Divider, label: "Divider / Pembatas" },
     ListBlock: { ...ListBlock, label: "Daftar / List Item" },
     Animation: { ...Animation, label: "Animasi Penunjuk" },
+    MetaPixel: { ...MetaPixel, label: "Meta Pixel Tracker" },
   },
 };
