@@ -19,9 +19,18 @@ export const Button: ComponentConfig<ButtonProps> = {
                 text: { type: "text", label: "Button Text" },
                 link: { type: "text", label: "Button Link" },
                 pixelEvent: { 
-                    type: "text", 
+                    type: "select", 
                     label: "Tracking Pixel Event", 
-                    placeholder: "e.g., Lead, AddToCart, WhatsAppClick (Optional)" 
+                    options: [
+                        { value: "", label: "Tidak Ada (Nonaktif)" },
+                        { value: "Lead", label: "Lead (Prospek)" },
+                        { value: "Contact", label: "Contact (Hubungi/WhatsApp)" },
+                        { value: "AddToCart", label: "AddToCart (Tambah ke Keranjang)" },
+                        { value: "InitiateCheckout", label: "InitiateCheckout (Mulai Checkout)" },
+                        { value: "Purchase", label: "Purchase (Pembelian)" },
+                        { value: "CompleteRegistration", label: "CompleteRegistration (Pendaftaran Selesai)" },
+                        { value: "ViewContent", label: "ViewContent (Lihat Konten)" },
+                    ]
                 },
             }
         },
